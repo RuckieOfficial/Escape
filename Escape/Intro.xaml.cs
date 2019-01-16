@@ -32,5 +32,11 @@ namespace Escape
         private void nextpage(object sender, RoutedEventArgs e) {
             parentFrame.Navigate(new Menu(parentFrame));
         }
+        private void Controls(object sender, KeyEventArgs e) {
+            if (e.Key == Key.E) {
+                MessageBox.Show("Jo");
+                //Game_pause.Visibility = Visibility.Visible;
+            }
+        }
     }
 }
