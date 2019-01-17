@@ -5,22 +5,20 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Escape"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="1020"
-      Title="Intro" KeyDown="Controls">
+      Title="Intro" Width="1530" Height="830" Loaded="Page_loaded">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <local:Pause x:Name="Game_pause" Visibility="Hidden" Panel.ZIndex="10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <Button Content="Next page"  Panel.ZIndex="2" Click="nextpage" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="324,464,304,448"/>
-        <Button Content="Pokus"  Panel.ZIndex="2" Margin="0,10,118,362"/>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <local:Pause x:Name="Game_pause" Visibility="Hidden" Panel.ZIndex="10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+    <Button Content="Next page"  Panel.ZIndex="2" Click="nextpage" Grid.ColumnSpan="2" Margin="298,308,329.6,317.4" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
         <Label Grid.Column="0" Grid.Row="0" Background="Red"/>
-        <Label Grid.Column="1" Grid.Row="1" Background="Blue"/>
-    </Grid>
+    <Label Grid.Column="1" Grid.Row="1" Background="Blue"/>
+  </Grid>
 </Page>

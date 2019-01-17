@@ -21,6 +21,7 @@ namespace Escape
     public partial class Intro : Page
     {
         private Frame parentFrame;
+        bool paused = false;
         public Intro()
         {
             InitializeComponent();
@@ -29,13 +30,23 @@ namespace Escape
             this.parentFrame = parentFrame;
         }
 
+        private void Page_loaded(object sender, RoutedEventArgs e) {
+            Application.Current.MainWindow.KeyDown += new KeyEventHandler(Controls);
+        }
+
         private void nextpage(object sender, RoutedEventArgs e) {
             parentFrame.Navigate(new Menu(parentFrame));
+            Application.Current.MainWindow.KeyDown -= new KeyEventHandler(Controls);
         }
         private void Controls(object sender, KeyEventArgs e) {
-            if (e.Key == Key.E) {
-                MessageBox.Show("Jo");
-                //Game_pause.Visibility = Visibility.Visible;
+            if (e.Key == Key.Escape) {
+                if (paused == false) {
+                    Game_pause.Visibility = Visibility.Visible;
+                    paused = true;
+                } else {
+                    Game_pause.Visibility = Visibility.Hidden;
+                    paused = false;
+                }
             }
         }
     }

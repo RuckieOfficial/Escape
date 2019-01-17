@@ -22,12 +22,32 @@ namespace Escape
     {
 
         private Frame parentFrame;
+        bool paused = false;
         public Menu()
         {
             InitializeComponent();
         }
         public Menu(Frame parentFrame) : this() {
             this.parentFrame = parentFrame;
+        }
+        private void Page_loaded(object sender, RoutedEventArgs e) {
+            Application.Current.MainWindow.KeyDown += new KeyEventHandler(Controls);
+        }
+
+        private void prepage(object sender, RoutedEventArgs e) {
+            parentFrame.Navigate(new Intro(parentFrame));
+            Application.Current.MainWindow.KeyDown -= new KeyEventHandler(Controls);
+        }
+        private void Controls(object sender, KeyEventArgs e) {
+            if (e.Key == Key.Escape) {
+                if (paused == false) {
+                    Game_pause.Visibility = Visibility.Visible;
+                    paused = true;
+                } else {
+                    Game_pause.Visibility = Visibility.Hidden;
+                    paused = false;
+                }
+            }
         }
     }
 }

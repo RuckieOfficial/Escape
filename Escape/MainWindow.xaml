@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Escape"
         mc:Ignorable="d"   
-        Title="Escape" Left="0" Top="0" Width="1920" Height="1020" WindowState="Normal">
+        Title="Escape" Left="0" Top="0" Width="1530" Height="830">
     <Grid>
         <Frame x:Name="myFrame" NavigationUIVisibility="Hidden"/>
     </Grid>

@@ -5,8 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Escape"
       mc:Ignorable="d" 
-      d:DesignHeight="1920" d:DesignWidth="1020"
-      Title="Menu">
+      Title="Intro" Width="1530" Height="830" Loaded="Page_loaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -17,7 +16,8 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
+        <local:Pause x:Name="Game_pause" Visibility="Hidden" Panel.ZIndex="10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Button Content="Previous page"  Panel.ZIndex="2" Click="prepage" Grid.ColumnSpan="2" Margin="298,308,329.6,317.4" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
         <Label Grid.Column="0" Grid.Row="0" Background="Yellow"/>
         <Label Grid.Column="1" Grid.Row="1" Background="Green"/>
     </Grid>
