@@ -34,7 +34,11 @@ namespace Escape
             Application.Current.MainWindow.KeyDown += new KeyEventHandler(Controls);
         }
 
-        private void prepage(object sender, RoutedEventArgs e) {
+        private void go_prison(object sender, RoutedEventArgs e) {
+            parentFrame.Navigate(new Prison(parentFrame));
+            Application.Current.MainWindow.KeyDown -= new KeyEventHandler(Controls);
+        }
+        private void go_intro(object sender, RoutedEventArgs e) {
             parentFrame.Navigate(new Intro(parentFrame));
             Application.Current.MainWindow.KeyDown -= new KeyEventHandler(Controls);
         }

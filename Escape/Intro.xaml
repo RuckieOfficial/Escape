@@ -7,18 +7,21 @@
       mc:Ignorable="d" 
       Title="Intro" Width="1530" Height="830" Loaded="Page_loaded">
 
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition/>
-      <RowDefinition/>
-    </Grid.RowDefinitions>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition/>
-      <ColumnDefinition/>
-    </Grid.ColumnDefinitions>
-    <local:Pause x:Name="Game_pause" Visibility="Hidden" Panel.ZIndex="10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-    <Button Content="Next page"  Panel.ZIndex="2" Click="nextpage" Grid.ColumnSpan="2" Margin="298,308,329.6,317.4" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
-        <Label Grid.Column="0" Grid.Row="0" Background="Red"/>
-    <Label Grid.Column="1" Grid.Row="1" Background="Blue"/>
-  </Grid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!--Obsah-->
+        <Label Grid.Column="1" Grid.Row="1" Background="Purple"/>
+        <Label Grid.Column="0" Grid.Row="0" Background="Lime"/>
+        <Button Content="Menu" FontSize="50" Click="go_menu" Grid.ColumnSpan="2" Margin="290,312,337.6,391.4" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Height="Auto"/>
+        <Button Content="Prison" FontSize="50" Click="go_prison" Grid.ColumnSpan="2" Margin="290,28.8,337.6,264.4" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Height="Auto"/>
+        <!--Pauza hry-->
+        <local:Pause x:Name="Game_pause" Visibility="Hidden" Panel.ZIndex="10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+    </Grid>
 </Page>

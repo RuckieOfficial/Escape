@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Escape"
              mc:Ignorable="d" 
-             d:DesignHeight="1920" d:DesignWidth="1020" >
+             Width="1530" Height="830">
     <Grid>
         <Label Content="Prvni" Panel.ZIndex="2" FontSize="80" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,200"/>
         <Label Content="Druhy" Panel.ZIndex="2" FontSize="80" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label Content="Treti" Panel.ZIndex="2" FontSize="80" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,-200"/>
-        <Rectangle Margin="0,0,0,-0.4" Fill="#CC000000" />
+        <Rectangle Margin="0,0,0,-0.4" Fill="#E5000000" />
     </Grid>
 </UserControl>

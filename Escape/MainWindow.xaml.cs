@@ -17,7 +17,7 @@ namespace Escape {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-            myFrame.Navigate(new Intro(myFrame));
+            myFrame.Navigate(new Prison(myFrame));
         }
     }
 }

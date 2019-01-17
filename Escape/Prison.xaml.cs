@@ -13,20 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Escape
-{
+namespace Escape {
     /// <summary>
     /// Interakční logika pro Intro.xaml
     /// </summary>
-    public partial class Intro : Page
-    {
+    public partial class Prison : Page {
         private Frame parentFrame;
         bool paused = false;
-        public Intro()
-        {
+        public Prison() {
             InitializeComponent();
         }
-        public Intro(Frame parentFrame) : this(){
+        public Prison(Frame parentFrame) : this() {
             this.parentFrame = parentFrame;
         }
 
@@ -38,11 +35,10 @@ namespace Escape
             parentFrame.Navigate(new Menu(parentFrame));
             Application.Current.MainWindow.KeyDown -= new KeyEventHandler(Controls);
         }
-        private void go_prison(object sender, RoutedEventArgs e) {
-            parentFrame.Navigate(new Prison(parentFrame));
+        private void go_intro(object sender, RoutedEventArgs e) {
+            parentFrame.Navigate(new Intro(parentFrame));
             Application.Current.MainWindow.KeyDown -= new KeyEventHandler(Controls);
         }
-
         private void Controls(object sender, KeyEventArgs e) {
             if (e.Key == Key.Escape) {
                 if (paused == false) {
