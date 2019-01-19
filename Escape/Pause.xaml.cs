@@ -20,9 +20,25 @@ namespace Escape
     /// </summary>
     public partial class Pause : UserControl
     {
+        bool fullscreen = false;
+
         public Pause()
         {
             InitializeComponent();
+        }
+        void Exit(object sender, RoutedEventArgs e) {
+            System.Windows.Application.Current.Shutdown();
+        }
+        void Fullscreen(object sender, RoutedEventArgs e) {
+            if (fullscreen == false) {
+                Window window = Window.GetWindow(this);
+                window.WindowState = System.Windows.WindowState.Maximized;
+                fullscreen = true;
+            } else {
+                Window window = Window.GetWindow(this);
+                window.WindowState = System.Windows.WindowState.Normal;
+                fullscreen = false;
+            }
         }
     }
 }

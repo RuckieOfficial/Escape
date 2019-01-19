@@ -12,16 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Escape {
     /// <summary>
     /// Interakční logika pro Intro.xaml
     /// </summary>
     public partial class Prison : Page {
+
+        int actual_hp = 100;
+        int actual_dopamine = 100;
         private Frame parentFrame;
+        DispatcherTimer dopamin_timer = new DispatcherTimer();
+
         bool paused = false;
         public Prison() {
             InitializeComponent();
+            informace();
+            dopamin_counter();
         }
         public Prison(Frame parentFrame) : this() {
             this.parentFrame = parentFrame;
@@ -29,6 +37,11 @@ namespace Escape {
 
         private void Page_loaded(object sender, RoutedEventArgs e) {
             Application.Current.MainWindow.KeyDown += new KeyEventHandler(Controls);
+        }
+
+        void informace() {
+            hp.Content = actual_hp + "%";
+            dopamin.Content = actual_dopamine + "%";
         }
 
         private void go_menu(object sender, RoutedEventArgs e) {
@@ -49,6 +62,17 @@ namespace Escape {
                     paused = false;
                 }
             }
+        }
+
+        void dopamin_counter() {
+            dopamin_timer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
+            dopamin_timer.Tick += new EventHandler(dopamin_Tick);
+            dopamin_timer.Start();
+        }
+
+        void dopamin_Tick(object sender, EventArgs e) {
+            actual_dopamine--;
+            dopamin.Content = actual_dopamine + "%";
         }
     }
 }

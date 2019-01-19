@@ -22,7 +22,12 @@
         <Label Grid.Column="0" Grid.Row="0" Background="Red"/>
         <Button Content="Menu" FontSize="50" Click="go_menu" Grid.ColumnSpan="2" Margin="290,312,337.6,391.4" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Height="Auto"/>
         <Button Content="Intro" FontSize="50" Click="go_intro" Grid.ColumnSpan="2" Margin="290,28.8,337.6,264.4" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Height="Auto"/>
+        <!--Bary-->
         <Image Source="img/bars.png" Margin="541.2,10,23.6,288.2" Grid.Column="1"/>
+        <!--HP-->
+        <Label Name="hp" Content="null" FontSize="20" Foreground="White" Grid.Column="1" Margin="646.2,23,33.6,347.2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="45" Width="85"/>
+        <!--Dopamin-->
+        <Label Name="dopamin" Content="null" FontSize="20" Foreground="White" Grid.Column="1" Margin="646.2,73,33.6,297.2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="45" Width="85"/>
         <!--Pauza hry-->
         <local:Pause x:Name="Game_pause" Visibility="Hidden" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
     </Grid>

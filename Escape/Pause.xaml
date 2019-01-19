@@ -5,11 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Escape"
              mc:Ignorable="d" 
-             Width="1530" Height="830">
+             Width="1536" Height="830">
     <Grid>
-        <Label Content="Prvni" Panel.ZIndex="2" FontSize="80" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,200"/>
-        <Label Content="Druhy" Panel.ZIndex="2" FontSize="80" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Content="Treti" Panel.ZIndex="2" FontSize="80" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,-200"/>
         <Rectangle Margin="0,0,0,-0.4" Fill="#E5000000" />
+        <Button Content="Prvni" FontSize="80" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="655,243,654.6,472.4" Height="115" Background="#00000000" BorderBrush="#00000000"/>
+        <Button Content="Druhy" FontSize="80" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="638,358,638.6,357.4" Height="115" Background="#00000000" BorderBrush="#00000000"/>
+        <Button Content="Exit" Click="Exit" FontSize="80" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="683,473,683.6,242.4" Height="115" Background="#00000000" BorderBrush="#00000000"/>
+
+        <Button Width="60" Height="50" Click="Fullscreen" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" Foreground="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="img/fs.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </UserControl>

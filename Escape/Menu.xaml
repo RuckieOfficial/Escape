@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Escape"
       mc:Ignorable="d" 
-      Title="Intro" Width="1530" Height="830" Loaded="Page_loaded">
+      Title="Intro" Width="1536" Height="830" Loaded="Page_loaded">
 
     <Grid>
         <Grid.RowDefinitions>
