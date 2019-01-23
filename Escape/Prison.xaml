@@ -17,6 +17,12 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <!-- Console -->
+        <WrapPanel x:Name="gameConsole" FocusManager.FocusedElement="{Binding ElementName=gameConsoleInput}" Grid.Row="1" Width="274" HorizontalAlignment="Left" Margin="0,156,0,10" Opacity="0.75" Visibility="Hidden">
+            <TextBox x:Name="gameConsoleInfo" Width="250" MaxHeight="300" HorizontalAlignment="Left" IsReadOnly="True" VerticalAlignment="Top" Height="200" TextWrapping="Wrap" Background="Black" Foreground="Lime" BorderBrush="{x:Null}"></TextBox>
+            <TextBox x:Name="gameConsoleInput" Width="186" VerticalContentAlignment="Center" MaxHeight="300" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Background="Black" Foreground="Lime" BorderBrush="{x:Null}"></TextBox>
+            <Button Width="65" Height="30" Content="Enter" Click="gameConsole_click" Background="Black" Foreground="Lime" BorderBrush="{x:Null}"/>
+        </WrapPanel>
         <!--Obsah-->
         <Label Grid.Column="1" Grid.Row="1" Background="Blue"/>
         <Label Grid.Column="0" Grid.Row="0" Background="Red"/>
