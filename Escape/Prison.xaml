@@ -17,24 +17,27 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <!-- Console -->
-        <WrapPanel x:Name="gameConsole" FocusManager.FocusedElement="{Binding ElementName=gameConsoleInput}" Grid.Row="1" Width="274" HorizontalAlignment="Left" Margin="0,156,0,10" Opacity="0.75" Visibility="Hidden">
-            <TextBox x:Name="gameConsoleInfo" Width="250" MaxHeight="300" HorizontalAlignment="Left" IsReadOnly="True" VerticalAlignment="Top" Height="200" TextWrapping="Wrap" Background="Black" Foreground="Lime" BorderBrush="{x:Null}"></TextBox>
-            <TextBox x:Name="gameConsoleInput" Width="186" VerticalContentAlignment="Center" MaxHeight="300" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Background="Black" Foreground="Lime" BorderBrush="{x:Null}"></TextBox>
-            <Button Width="65" Height="30" Content="Enter" Click="gameConsole_click" Background="Black" Foreground="Lime" BorderBrush="{x:Null}"/>
-        </WrapPanel>
         <!--Obsah-->
-        <Label Grid.Column="1" Grid.Row="1" Background="Blue"/>
-        <Label Grid.Column="0" Grid.Row="0" Background="Red"/>
-        <Button Content="Menu" FontSize="50" Click="go_menu" Grid.ColumnSpan="2" Margin="290,312,337.6,391.4" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Height="Auto"/>
-        <Button Content="Intro" FontSize="50" Click="go_intro" Grid.ColumnSpan="2" Margin="290,28.8,337.6,264.4" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Height="Auto"/>
+        <Image Name="bg" Source="img\bg\bg_game_1.jpg" Grid.ColumnSpan="2" Grid.RowSpan="2" Stretch="Fill"/>
+        <Button Content="Menu" FontSize="50" Click="go_menu" Margin="283,258,10,91" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
+        <Button Content="Intro" FontSize="50" Click="go_intro" Margin="283,329,10,22" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Height="Auto" Grid.Column="1"/>
         <!--Bary-->
         <Image Source="img/bars.png" Margin="541.2,10,23.6,288.2" Grid.Column="1"/>
         <!--HP-->
         <Label Name="hp" Content="null" FontSize="20" Foreground="White" Grid.Column="1" Margin="646.2,23,33.6,347.2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="45" Width="85"/>
         <!--Dopamin-->
         <Label Name="dopamin" Content="null" FontSize="20" Foreground="White" Grid.Column="1" Margin="646.2,73,33.6,297.2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="45" Width="85"/>
+        <!-- Console -->
+        <WrapPanel x:Name="gameConsole" Grid.Row="1" Width="274" HorizontalAlignment="Left" Margin="0,156,0,10" Opacity="0.75" Visibility="Hidden">
+            <TextBox x:Name="gameConsoleInfo" Width="250" MaxHeight="300" HorizontalAlignment="Left" IsReadOnly="True" VerticalAlignment="Top" Height="200" TextWrapping="Wrap" Background="Black" Foreground="Lime" BorderBrush="{x:Null}"/>
+            <TextBox x:Name="gameConsoleInput" Width="186" VerticalContentAlignment="Center" MaxHeight="300" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Background="Black" Foreground="Lime" BorderBrush="{x:Null}"/>
+            <Button x:Name="gameConsoleButton" Width="65" Height="30" Content="Enter" Click="gameConsole_click" Background="Black" Foreground="Lime" BorderBrush="{x:Null}"/>
+        </WrapPanel>
         <!--Pauza hry-->
         <local:Pause x:Name="Game_pause" Visibility="Hidden" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Button Content="1" FontSize="50" Click="prvni" Margin="371,98,302,251" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
+        <Button Content="2" FontSize="50" Click="druhy" Margin="468,98,205,251" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
+        <Button Content="3" FontSize="50" Click="treti" Margin="371,169,302,180" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
+        <Button Content="4" FontSize="50" Click="ctvrty" Margin="468,169,205,180" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
     </Grid>
 </Page>

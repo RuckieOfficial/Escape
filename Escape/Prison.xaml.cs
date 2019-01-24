@@ -20,16 +20,26 @@ namespace Escape {
     /// </summary>
     public partial class Prison : Page {
 
+        string last_command;
         int actual_hp = 100;
         int actual_dopamine = 100;
+
         private Frame parentFrame;
         DispatcherTimer dopamin_timer = new DispatcherTimer();
 
+        Dictionary<string, Uri> prison_bg = new Dictionary<string, Uri>();
+        void pozadi() {
+            prison_bg.Add("PrisonBG1", new Uri(@"img/bg/bg_game_1.jpg", UriKind.Relative));
+            prison_bg.Add("PrisonBG2", new Uri(@"img/bg/bg_game_2.jpg", UriKind.Relative));
+            prison_bg.Add("PrisonBG3", new Uri(@"img/bg/bg_game_3.jpg", UriKind.Relative));
+            prison_bg.Add("PrisonBG4", new Uri(@"img/bg/bg_game_4.jpg", UriKind.Relative));
+        }
+
         List<string> consoleCommands = new List<string> { "help", "clear", "heal", "get high" };
-        List<string> last_command = new List<string>();
 
         public Prison() {
             InitializeComponent();
+            pozadi();
             informace();
             dopamin_counter();
         }
@@ -39,6 +49,19 @@ namespace Escape {
 
         private void Page_loaded(object sender, RoutedEventArgs e) {
             Application.Current.MainWindow.KeyDown += new KeyEventHandler(Controls);
+        }
+
+        public void prvni(object sender, RoutedEventArgs e) {
+            bg.Source = new BitmapImage(prison_bg["PrisonBG1"]);
+        }
+        public void druhy(object sender, RoutedEventArgs e) {
+            bg.Source = new BitmapImage(prison_bg["PrisonBG2"]);
+        }
+        public void treti(object sender, RoutedEventArgs e) {
+            bg.Source = new BitmapImage(prison_bg["PrisonBG3"]);
+        }
+        public void ctvrty(object sender, RoutedEventArgs e) {
+            bg.Source = new BitmapImage(prison_bg["PrisonBG4"]);
         }
 
         void informace() {
@@ -67,7 +90,6 @@ namespace Escape {
             //Otevření konzole
             if (e.Key == Key.OemTilde) {
                 if (gameConsole.Visibility == Visibility.Hidden) {
-                    last_command = new List<string>();
                     gameConsole.Visibility = Visibility.Visible;
                 } else {
                     gameConsole.Visibility = Visibility.Hidden;
@@ -78,17 +100,15 @@ namespace Escape {
 
                 sendGameConsoleData();
             }
-            if (gameConsole.Visibility == Visibility.Visible && (e.Key == Key.F1)) {
-                foreach (var item in last_command) {
-                }
-                if(last_command.Count() > 0) {
-                    gameConsoleInput.Text = last_command[last_command.Count - 1];
+            if (gameConsole.Visibility == Visibility.Visible) {
+                if (e.Key == Key.F1) {
+                        gameConsoleInput.Text = last_command;
                 }
             }
         }
         // CONSOLE
         private void gameConsole_click(object sender, RoutedEventArgs e) {
-            last_command.Add(gameConsoleInput.Text);
+            last_command = gameConsoleInput.Text;
             sendGameConsoleData();
         }
 
@@ -101,6 +121,12 @@ namespace Escape {
             } else if (command == "get high") {
                 commandExist = true;
                 actual_dopamine = 100;
+            } else if (command.Contains("color")) {
+                string[] barva = command.Split(new string[] { "color " }, StringSplitOptions.None);
+                var barva_cnvrt = (Color)ColorConverter.ConvertFromString(barva[1]);
+                gameConsoleInfo.Foreground = new SolidColorBrush(barva_cnvrt);
+                gameConsoleInput.Foreground = new SolidColorBrush(barva_cnvrt);
+                gameConsoleButton.Foreground = new SolidColorBrush(barva_cnvrt);
             } else if (command == "exit") {
                 commandExist = true;
                 System.Windows.Application.Current.Shutdown();
@@ -153,6 +179,7 @@ namespace Escape {
             gameConsoleInput.Focus();
         }
 
+        // DOPAMIN
         void dopamin_counter() {
             dopamin_timer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
             dopamin_timer.Tick += new EventHandler(dopamin_Tick);
