@@ -23,6 +23,8 @@
         <Button Content="Intro" FontSize="50" Click="go_intro" Margin="283,329,10,22" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Height="Auto" Grid.Column="1"/>
         <!--Bary-->
         <Image Source="img/bars.png" Margin="541.2,10,23.6,288.2" Grid.Column="1"/>
+        <ProgressBar x:Name="hpBar" Height="Auto" Background="#FFF05789" Grid.Column="1" Margin="598.2,26,30.6,353.2" BorderBrush="{x:Null}" Foreground="#FFED145B"/>
+        <ProgressBar x:Name="drugBar" Height="Auto" Background="#FF35E48A" Grid.Column="1" Margin="598.2,75,30.6,303.2" BorderBrush="{x:Null}" Foreground="#FF00A651" />
         <!--HP-->
         <Label Name="hp" Content="null" FontSize="20" Foreground="White" Grid.Column="1" Margin="646.2,23,33.6,347.2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="45" Width="85"/>
         <!--Dopamin-->
@@ -33,11 +35,12 @@
             <TextBox x:Name="gameConsoleInput" Width="186" VerticalContentAlignment="Center" MaxHeight="300" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Background="Black" Foreground="Lime" BorderBrush="{x:Null}"/>
             <Button x:Name="gameConsoleButton" Width="65" Height="30" Content="Enter" Click="gameConsole_click" Background="Black" Foreground="Lime" BorderBrush="{x:Null}"/>
         </WrapPanel>
-        <!--Pauza hry-->
-        <local:Pause x:Name="Game_pause" Visibility="Hidden" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <!--Ovládání scény-->
         <Button Content="1" FontSize="50" Click="prvni" Margin="371,98,302,251" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
         <Button Content="2" FontSize="50" Click="druhy" Margin="468,98,205,251" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
         <Button Content="3" FontSize="50" Click="treti" Margin="371,169,302,180" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
         <Button Content="4" FontSize="50" Click="ctvrty" Margin="468,169,205,180" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
+        <!--Pauza hry-->
+        <local:Pause x:Name="Game_pause" Visibility="Hidden" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
     </Grid>
 </Page>
