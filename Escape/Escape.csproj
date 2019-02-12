@@ -149,5 +149,14 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\items\lights\lighton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\items\lights\lightuv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\items\lights\lightoff.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

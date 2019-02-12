@@ -19,6 +19,13 @@
         </Grid.ColumnDefinitions>
         <!--Obsah-->
         <Image Name="bg" Source="img\bg\bg_game_1.jpg" Grid.ColumnSpan="2" Grid.RowSpan="2" Stretch="Fill"/>
+        <!--Room1-->
+        <Image Name="light1" Source="img\items\lights\lighton.png" Margin="180,0,185,198"/>
+        <Button Name="light_switch" Click="lightSwitch" Height="50px" Content="on/off" FontSize="10px" Background="White" Margin="535,240,161,125"/>
+        <Button Name="light_switch_uv" Click="lightSwitchUv" Height="50px" Content="uv" FontSize="10px" Background="White" Margin="609,240,87,125"/>
+        <!--Room2-->
+        <!--Room4-->
+        <!--Room3-->
         <Button Content="Menu" FontSize="50" Click="go_menu" Margin="283,258,10,91" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
         <Button Content="Intro" FontSize="50" Click="go_intro" Margin="283,329,10,22" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Height="Auto" Grid.Column="1"/>
         <!--Bary-->
