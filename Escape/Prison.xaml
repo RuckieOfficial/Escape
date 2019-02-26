@@ -40,6 +40,7 @@
                 <ImageBrush ImageSource="img/items/room1/picture_monalisa.png"/>
             </Button.Background>
         </Button>
+        <Button Name="enigma_button" Click="openenigma" Visibility="Hidden" Background="Transparent" BorderBrush="Transparent" Height="Auto" Margin="193,242,541,154"/>
         <Button Name="rdopamin" Visibility="Hidden" Margin="228,217,527,152" Click="takerdopamin" Height="Auto" BorderBrush="{x:Null}" Foreground="{x:Null}">
             <Button.Background>
                 <ImageBrush ImageSource="img\items\room1\dopamin_inpic_r.png"/>
@@ -52,7 +53,8 @@
         </Button>
         <Image Name="light1" Source="img\items\lights\lighton.png" Margin="180,0,185,198"/>
         <Image Name="flare1" Source="img\items\flares\flareY.png" IsHitTestVisible="False" Opacity="0.8" d:IsHidden="False" Margin="-24,0,742,0" Grid.ColumnSpan="2"/>
-        <Rectangle Name="dark1" Visibility="Hidden" Fill="Black" Opacity="0.5" IsHitTestVisible="false" Width="Auto" Height="Auto" Grid.Row="0" Grid.Column="0" Margin="0,0,10,0"/>
+        <Rectangle Name="dark1" Visibility="Hidden" Fill="Black" Opacity="0.5" IsHitTestVisible="False" Width="Auto" Height="Auto" Grid.Row="0" Grid.Column="0" Margin="0,0,10,0"/>
+        <local:Enigma x:Name="item_enigma" Panel.ZIndex="1" Visibility="Hidden" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
         <!--Room2-->
         <!--Room4-->
         <!--Room3-->
@@ -79,6 +81,6 @@
         <Button Content="4" FontSize="50" Click="ctvrty" Margin="468,169,205,180" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
         <Button Content="Sound" FontSize="50" Click="sound" Margin="565,98,24,251" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
         <!--Pauza hry-->
-        <local:Pause x:Name="Game_pause" Visibility="Hidden" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <local:Pause x:Name="Game_pause" Panel.ZIndex="10" Visibility="Hidden" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
     </Grid>
 </Page>

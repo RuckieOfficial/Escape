@@ -26,9 +26,13 @@ namespace Escape {
         int actual_hp = 100;
         int actual_dopamine = 100;
         int dopamin_speed = 3000;
-        int light1_state = 1;
         int sound_state = 1;
         bool admin = false;
+        //Místnost 1
+        int light1_state = 1;
+        bool pic_l_dop = true;
+        bool pic_r_dop = true;
+        bool enigma = false;
 
         private Frame parentFrame;
         DispatcherTimer dopamin_timer = new DispatcherTimer();
@@ -122,6 +126,7 @@ namespace Escape {
 
         void initializeRoom1() {
             flareone();
+            item_enigma.close_enigma.Click += new RoutedEventHandler(enigma_close);
         }
 
         void informace() {
@@ -270,8 +275,21 @@ namespace Escape {
             mona.ImageSource = new BitmapImage(new Uri(@"img/items/room1/picture_monalisa_opened.png", UriKind.Relative));
             monalisa.Background = mona;
             monalisa.BorderBrush = Brushes.Transparent;
-            rdopamin.Visibility = Visibility.Visible;
-            ldopamin.Visibility = Visibility.Visible;
+            if (pic_r_dop) {
+                rdopamin.Visibility = Visibility.Visible;
+            }
+            if (pic_l_dop) {
+                ldopamin.Visibility = Visibility.Visible;
+            }
+            enigma_button.Visibility = Visibility.Visible;
+        }
+
+        public void openenigma(object sender, RoutedEventArgs e) {
+            item_enigma.Visibility = Visibility.Visible;
+        }
+        void enigma_close(object sender, RoutedEventArgs e) {
+            item_enigma.close_enigma.Click -= new RoutedEventHandler(enigma_close);
+            item_enigma.Visibility = Visibility.Hidden;
         }
 
         public void takerdopamin(object sender, RoutedEventArgs e) {
@@ -279,6 +297,7 @@ namespace Escape {
             actual_dopamine += 15;
             informace();
             drugBar.Value = actual_dopamine;
+            pic_r_dop = false;
         }
 
         public void takeldopamin(object sender, RoutedEventArgs e) {
@@ -287,6 +306,7 @@ namespace Escape {
             actual_dopamine += 15;
             informace();
             drugBar.Value = actual_dopamine;
+            pic_l_dop = false;
         }
 
         // Console

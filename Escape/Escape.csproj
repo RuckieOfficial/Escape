@@ -64,6 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Enigma.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Intro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -75,6 +79,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enigma.xaml.cs">
+      <DependentUpon>Enigma.xaml</DependentUpon>
     </Compile>
     <Compile Include="Intro.xaml.cs">
       <DependentUpon>Intro.xaml</DependentUpon>
@@ -164,6 +171,9 @@
   <ItemGroup />
   <ItemGroup>
     <Resource Include="img\items\room1\light_switch.jpg" />
+    <Resource Include="img\items\room1\enigma\enigma_bg.jpg" />
+    <Resource Include="img\items\room1\enigma\green_indicator.png" />
+    <Resource Include="img\items\room1\enigma\red_indicator.png" />
     <Content Include="img\items\room1\picture_monalisa.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
