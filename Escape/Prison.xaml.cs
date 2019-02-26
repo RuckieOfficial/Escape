@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -9,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -23,7 +25,9 @@ namespace Escape {
         int lastCommandIndex = 0;
         int actual_hp = 100;
         int actual_dopamine = 100;
+        int dopamin_speed = 3000;
         int light1_state = 1;
+        int sound_state = 1;
         bool admin = false;
 
         private Frame parentFrame;
@@ -31,6 +35,10 @@ namespace Escape {
 
         Dictionary<string, Uri> prison_bg = new Dictionary<string, Uri>();
         Dictionary<string, Uri> light_state_img = new Dictionary<string, Uri>();
+
+        static string ingame = @"sound/ingame.wav";
+        SoundPlayer music = new SoundPlayer(ingame);
+
         private void initializeBG() {
             prison_bg.Add("PrisonBG1", new Uri(@"img/bg/bg_game_1.jpg", UriKind.Relative));
             prison_bg.Add("PrisonBG2", new Uri(@"img/bg/bg_game_2.jpg", UriKind.Relative));
@@ -43,6 +51,11 @@ namespace Escape {
             light_state_img.Add("Lightuv", new Uri(@"img/items/lights/lightuv.png", UriKind.Relative));
         }
 
+        private void initializeFlares() {
+            light_state_img.Add("FlareY", new Uri(@"img/items/flares/flareY.png", UriKind.Relative));
+            light_state_img.Add("FlareUV", new Uri(@"img/items/flares/flareUV.png", UriKind.Relative));
+        }
+
         List<string> consoleCommands = new List<string> { "help", "clear", "color" };
         List<string> consoleCommands_admin = new List<string> 
         { "help", "clear", "heal", "get high", "color", "freeze", "unfreeze" , "exit" };
@@ -50,9 +63,11 @@ namespace Escape {
 
         public Prison() {
             InitializeComponent();
+            initializeAll();
             initializeBG();
             initializeBars();
             initializeLights();
+            initializeFlares();
             initializeRoom1();
         }
         public Prison(Frame parentFrame) : this() {
@@ -77,6 +92,21 @@ namespace Escape {
             bg.Source = new BitmapImage(prison_bg["PrisonBG4"]);
         }
 
+        public void sound(object sender, RoutedEventArgs e) {
+            if (sound_state == 1) {
+                music.Stop();
+                sound_state = 0;
+
+            } else {
+                music.PlayLooping();
+                sound_state = 1;
+            }
+        }
+
+        void initializeAll() {
+            music.PlayLooping();
+        }
+
         void initializeBars() {
             hpBar.Minimum = 0;
             hpBar.Maximum = 100;
@@ -91,12 +121,17 @@ namespace Escape {
         }
 
         void initializeRoom1() {
-            light1.Source = new BitmapImage(light_state_img["Lighton"]);
+            flareone();
         }
 
         void informace() {
             hp.Content = actual_hp + "%";
-            dopamin.Content = actual_dopamine + "%";
+            if (actual_dopamine > 100) {
+                actual_dopamine = 100;
+                dopamin.Content = actual_dopamine + "%";
+            } else {
+                dopamin.Content = actual_dopamine + "%";
+            }
         }
 
         //Framy
@@ -113,7 +148,7 @@ namespace Escape {
 
         // DOPAMIN
         void dopamin_counter() {
-            dopamin_timer.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            dopamin_timer.Interval = new TimeSpan(0, 0, 0, 0, dopamin_speed);
             dopamin_timer.Tick += new EventHandler(dopamin_Tick);
             dopamin_timer.Start();
         }
@@ -152,23 +187,106 @@ namespace Escape {
 
        void lightSwitch(object sender, RoutedEventArgs e) {
             if (light1_state == 1) {
-                light1.Source = new BitmapImage(light_state_img["Lightoff"]);
                 light1_state = 0;
+                flareone();
+                light1.Source = new BitmapImage(light_state_img["Lightoff"]);
+                flare1.Source = new BitmapImage(light_state_img["FlareY"]);
+                dopamin_timer.Tick -= new EventHandler(dopamin_Tick);
+                dopamin_speed = 5000;
+                dopamin_counter();
+                dark1.Visibility = Visibility.Visible;
+                pin.Visibility = Visibility.Hidden;
+                flare1.Visibility = Visibility.Hidden;
             } else {
-                light1.Source = new BitmapImage(light_state_img["Lighton"]);
                 light1_state = 1;
+                flareone();
+                light1.Source = new BitmapImage(light_state_img["Lighton"]);
+                flare1.Source = new BitmapImage(light_state_img["FlareY"]);
+                dopamin_timer.Tick -= new EventHandler(dopamin_Tick);
+                dopamin_speed = 3000;
+                dopamin_counter();
+                dark1.Visibility = Visibility.Hidden;
+                pin.Visibility = Visibility.Hidden;
+                flare1.Visibility = Visibility.Visible;
             }
         }
 
         void lightSwitchUv(object sender, RoutedEventArgs e) {
             if (light1_state == 0 || light1_state == 1) {
-                light1.Source = new BitmapImage(light_state_img["Lightuv"]);
                 light1_state = 2;
+                flareone();
+                light1.Source = new BitmapImage(light_state_img["Lightuv"]);
+                flare1.Source = new BitmapImage(light_state_img["FlareUV"]);
+                dopamin_timer.Tick -= new EventHandler(dopamin_Tick);
+                dopamin_speed = 500;
+                dopamin_counter();
+                dark1.Visibility = Visibility.Hidden;
+                pin.Visibility = Visibility.Visible;
+                flare1.Visibility = Visibility.Visible;
             } else {
-                light1.Source = new BitmapImage(light_state_img["Lightoff"]);
                 light1_state = 0;
+                flareone();
+                light1.Source = new BitmapImage(light_state_img["Lightoff"]);
+                flare1.Source = new BitmapImage(light_state_img["FlareUV"]);
+                dopamin_timer.Tick -= new EventHandler(dopamin_Tick);
+                dopamin_speed = 5000;
+                dopamin_counter();
+                dark1.Visibility = Visibility.Visible;
+                pin.Visibility = Visibility.Hidden;
+                flare1.Visibility = Visibility.Hidden;
             }
 
+        }
+
+        public void flareone() {
+            DoubleAnimation animace;
+            if (light1_state == 1) {
+                animace = new DoubleAnimation {
+                    From = 0.8,
+                    To = 0.5,
+                    BeginTime = TimeSpan.FromSeconds(1),
+                    Duration = TimeSpan.FromSeconds(2),
+                    FillBehavior = FillBehavior.Stop
+                };
+                animace.AutoReverse = true;
+            } else {
+                animace = new DoubleAnimation {
+                    From = 0.9,
+                    To = 0.7,
+                    BeginTime = TimeSpan.FromSeconds(0),
+                    Duration = TimeSpan.FromSeconds(0.6),
+                    FillBehavior = FillBehavior.Stop
+                };
+                animace.AutoReverse = false;
+            }
+            animace.RepeatBehavior = RepeatBehavior.Forever;
+            flare1.BeginAnimation(UIElement.OpacityProperty, animace);
+        }
+
+        //Mona lisa
+
+        public void openmonalisa(object sender, RoutedEventArgs e) {
+            var mona = new ImageBrush();
+            mona.ImageSource = new BitmapImage(new Uri(@"img/items/room1/picture_monalisa_opened.png", UriKind.Relative));
+            monalisa.Background = mona;
+            monalisa.BorderBrush = Brushes.Transparent;
+            rdopamin.Visibility = Visibility.Visible;
+            ldopamin.Visibility = Visibility.Visible;
+        }
+
+        public void takerdopamin(object sender, RoutedEventArgs e) {
+            rdopamin.Visibility = Visibility.Hidden;
+            actual_dopamine += 15;
+            informace();
+            drugBar.Value = actual_dopamine;
+        }
+
+        public void takeldopamin(object sender, RoutedEventArgs e) {
+            var mona = new ImageBrush();
+            ldopamin.Visibility = Visibility.Hidden;
+            actual_dopamine += 15;
+            informace();
+            drugBar.Value = actual_dopamine;
         }
 
         // Console
@@ -226,6 +344,11 @@ namespace Escape {
             } else if (command == "unfreeze" && admin == true) {
                 commandExist = true;
                 dopamin_timer.Start();
+            } else if (command == "back monalisa" && admin == true) {
+                var monaorig = new ImageBrush();
+                monaorig.ImageSource = new BitmapImage(new Uri(@"img/items/room1/picture_monalisa.png", UriKind.Relative));
+                monalisa.Background = monaorig;
+                commandExist = true;
             } else if (command == "exit" && admin == true) {
                 commandExist = true;
                 System.Windows.Application.Current.Shutdown();

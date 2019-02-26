@@ -55,6 +55,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=1.4.18.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.1.4.18\lib\net\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -157,6 +160,27 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\items\lights\lightoff.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="img\items\room1\light_switch.jpg" />
+    <Content Include="img\items\room1\picture_monalisa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="img\items\character\character_state_1.png" />
+    <Resource Include="img\items\room1\pin.png" />
+    <Resource Include="img\items\room1\dopamin_inpic_l.png" />
+    <Resource Include="img\items\room1\dopamin_inpic_r.png" />
+    <Content Include="img\items\room1\picture_monalisa_opened.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\ingame.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="img\items\flares\flareUV.png" />
+    <Content Include="img\items\flares\flareY.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

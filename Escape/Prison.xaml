@@ -1,5 +1,6 @@
 ﻿<Page x:Class="Escape.Prison"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:gif="http://wpfanimatedgif.codeplex.com"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -20,9 +21,38 @@
         <!--Obsah-->
         <Image Name="bg" Source="img\bg\bg_game_1.jpg" Grid.ColumnSpan="2" Grid.RowSpan="2" Stretch="Fill"/>
         <!--Room1-->
+        <Image Source="img\items\room1\light_switch.jpg" Margin="691,248,51,144"/>
+        <Image Source="img\items\room1\pin.png" Name="pin" Visibility="Hidden" Margin="438,-27,115,188" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="17.099"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Source="img\items\character\character_state_1.png" Margin="493,147,52,400" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5"/>
+        <Button Name="light_switch" Click="lightSwitch" FontSize="10px"  Background="Transparent" Margin="692,248,64,144" BorderBrush="#00707070" Foreground="#00000000" Height="Auto"/>
+        <Button Name="light_switch_uv" Click="lightSwitchUv" FontSize="10px" Background="Transparent" Margin="703,248,52,144" BorderBrush="#00707070" Foreground="#00000000" Height="Auto"/>
+        <Button Name="monalisa" Margin="164,177,519,144" Click="openmonalisa" Height="Auto" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="img/items/room1/picture_monalisa.png"/>
+            </Button.Background>
+        </Button>
+        <Button Name="rdopamin" Visibility="Hidden" Margin="228,217,527,152" Click="takerdopamin" Height="Auto" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="img\items\room1\dopamin_inpic_r.png"/>
+            </Button.Background>
+        </Button>
+        <Button Name="ldopamin" Visibility="Hidden" Margin="179,238,571,153" Click="takeldopamin" Height="Auto" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="img\items\room1\dopamin_inpic_l.png"/>
+            </Button.Background>
+        </Button>
         <Image Name="light1" Source="img\items\lights\lighton.png" Margin="180,0,185,198"/>
-        <Button Name="light_switch" Click="lightSwitch" Height="50px" Content="on/off" FontSize="10px" Background="White" Margin="535,240,161,125"/>
-        <Button Name="light_switch_uv" Click="lightSwitchUv" Height="50px" Content="uv" FontSize="10px" Background="White" Margin="609,240,87,125"/>
+        <Image Name="flare1" Source="img\items\flares\flareY.png" IsHitTestVisible="False" Opacity="0.8" d:IsHidden="False" Margin="-24,0,742,0" Grid.ColumnSpan="2"/>
+        <Rectangle Name="dark1" Visibility="Hidden" Fill="Black" Opacity="0.5" IsHitTestVisible="false" Width="Auto" Height="Auto" Grid.Row="0" Grid.Column="0" Margin="0"/>
         <!--Room2-->
         <!--Room4-->
         <!--Room3-->
@@ -47,6 +77,7 @@
         <Button Content="2" FontSize="50" Click="druhy" Margin="468,98,205,251" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
         <Button Content="3" FontSize="50" Click="treti" Margin="371,169,302,180" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
         <Button Content="4" FontSize="50" Click="ctvrty" Margin="468,169,205,180" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
+        <Button Content="Sound" FontSize="50" Click="sound" Margin="565,98,24,251" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>
         <!--Pauza hry-->
         <local:Pause x:Name="Game_pause" Visibility="Hidden" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
     </Grid>
