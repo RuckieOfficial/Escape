@@ -52,7 +52,7 @@
         </Button>
         <Image Name="light1" Source="img\items\lights\lighton.png" Margin="180,0,185,198"/>
         <Image Name="flare1" Source="img\items\flares\flareY.png" IsHitTestVisible="False" Opacity="0.8" d:IsHidden="False" Margin="-24,0,742,0" Grid.ColumnSpan="2"/>
-        <Rectangle Name="dark1" Visibility="Hidden" Fill="Black" Opacity="0.5" IsHitTestVisible="false" Width="Auto" Height="Auto" Grid.Row="0" Grid.Column="0" Margin="0"/>
+        <Rectangle Name="dark1" Visibility="Hidden" Fill="Black" Opacity="0.5" IsHitTestVisible="false" Width="Auto" Height="Auto" Grid.Row="0" Grid.Column="0" Margin="0,0,10,0"/>
         <!--Room2-->
         <!--Room4-->
         <!--Room3-->
