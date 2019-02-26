@@ -20,10 +20,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Image Source="img\items\room1\enigma\enigma_bg.jpg" Grid.ColumnSpan="2" Grid.RowSpan="6" Stretch="Fill" />
-        <Image Name="first_red" Visibility="Hidden" Source="img\items\room1\enigma\red_indicator.png" Margin="325,21,358,15"/>
+        <Image Name="first_red" Visibility="Hidden" Source="img\items\room1\enigma\red_indicator.png" Margin="626,36,689,25"/>
         <Image Name="last_green" Visibility="Hidden" Source="img\items\room1\enigma\green_indicator.png" Margin="812,36,503,25"/>
         <Button Name="close_enigma" Background="#00FF0000" Margin="10,10,17,10" Grid.Column="1" Height="Auto" BorderBrush="#00707070" Foreground="#00000000"/>
-        <Button Content="Red" Click="red" Background="White" Margin="201,33,461,20" Grid.Row="5"/>
-        <Button Content="Green" Click="green" Background="White" Margin="492,33,149,20" Grid.Row="5"/>
+        <Button Content="Red" Click="red" Background="White" Margin="518,69,792,56" Grid.Row="5"/>
+        <Button Content="Green" Click="green" Background="White" Margin="966,69,319,56" Grid.Row="5"/>
     </Grid>
 </UserControl>

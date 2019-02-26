@@ -288,7 +288,6 @@ namespace Escape {
             item_enigma.Visibility = Visibility.Visible;
         }
         void enigma_close(object sender, RoutedEventArgs e) {
-            item_enigma.close_enigma.Click -= new RoutedEventHandler(enigma_close);
             item_enigma.Visibility = Visibility.Hidden;
         }
 
