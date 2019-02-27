@@ -29,7 +29,7 @@ namespace Escape {
         int sound_state = 1;
         bool admin = false;
         //Místnost 1
-        int light1_state = 1;
+        int light1_state = 0;
         bool pic_l_dop = true;
         bool pic_r_dop = true;
 
@@ -202,6 +202,7 @@ namespace Escape {
             if (light1_state == 1) {
                 light1_state = 0;
                 flareone();
+                initializeMusic();
                 switchoff.Play();
                 light1.Source = new BitmapImage(light_state_img["Lightoff"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareY"]);
@@ -210,10 +211,12 @@ namespace Escape {
                 dopamin_counter();
                 dark1.Visibility = Visibility.Visible;
                 pin.Visibility = Visibility.Hidden;
+                hand.Visibility = Visibility.Hidden;
                 flare1.Visibility = Visibility.Hidden;
             } else {
                 light1_state = 1;
                 flareone();
+                initializeMusic();
                 switchon.Play();
                 light1.Source = new BitmapImage(light_state_img["Lighton"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareY"]);
@@ -222,6 +225,7 @@ namespace Escape {
                 dopamin_counter();
                 dark1.Visibility = Visibility.Hidden;
                 pin.Visibility = Visibility.Hidden;
+                hand.Visibility = Visibility.Hidden;
                 flare1.Visibility = Visibility.Visible;
             }
         }
@@ -230,6 +234,7 @@ namespace Escape {
             if (light1_state == 0 || light1_state == 1) {
                 light1_state = 2;
                 flareone();
+                initializeMusic();
                 switchon.Play();
                 light1.Source = new BitmapImage(light_state_img["Lightuv"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareUV"]);
@@ -238,10 +243,12 @@ namespace Escape {
                 dopamin_counter();
                 dark1.Visibility = Visibility.Hidden;
                 pin.Visibility = Visibility.Visible;
+                hand.Visibility = Visibility.Visible;
                 flare1.Visibility = Visibility.Visible;
             } else {
                 light1_state = 0;
                 flareone();
+                initializeMusic();
                 switchoff.Play();
                 light1.Source = new BitmapImage(light_state_img["Lightoff"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareUV"]);
@@ -250,6 +257,7 @@ namespace Escape {
                 dopamin_counter();
                 dark1.Visibility = Visibility.Visible;
                 pin.Visibility = Visibility.Hidden;
+                hand.Visibility = Visibility.Hidden;
                 flare1.Visibility = Visibility.Hidden;
             }
 
@@ -261,7 +269,7 @@ namespace Escape {
                 animace = new DoubleAnimation {
                     From = 0.8,
                     To = 0.5,
-                    BeginTime = TimeSpan.FromSeconds(1),
+                    BeginTime = TimeSpan.FromSeconds(0),
                     Duration = TimeSpan.FromSeconds(2),
                     FillBehavior = FillBehavior.Stop
                 };
@@ -278,6 +286,8 @@ namespace Escape {
             }
             animace.RepeatBehavior = RepeatBehavior.Forever;
             flare1.BeginAnimation(UIElement.OpacityProperty, animace);
+            pin.BeginAnimation(UIElement.OpacityProperty, animace);
+            hand.BeginAnimation(UIElement.OpacityProperty, animace);
         }
 
         //Mona lisa
