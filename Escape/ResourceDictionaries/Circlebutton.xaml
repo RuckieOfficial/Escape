@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Escape.resourceDictionaries">
+    <ControlTemplate x:Key="circle" TargetType="Button">
+        <Grid>
+            <Ellipse StrokeThickness="0">
+                <Ellipse.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Offset="0" Color="Transparent" />
+                        <RadialGradientBrush.Transform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleY="0.65" />
+                            </TransformGroup>
+                        </RadialGradientBrush.Transform>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+    </ControlTemplate>
+</ResourceDictionary>

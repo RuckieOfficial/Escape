@@ -25,51 +25,8 @@
         <Button Content="Red" Click="red" Background="White" Margin="518,69,792,56" Grid.Row="5"/>
         <Button Content="Green" Click="green" Background="White" Margin="966,69,319,56" Grid.Row="5"/>
 
-        <Button Height="Auto" Content="1" Foreground="White" FontSize="40" Margin="307,20,1012.4,14.6" Grid.Row="2">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <Ellipse StrokeThickness="0">
-                            <Ellipse.Fill>
-                                <RadialGradientBrush>
-                                    <GradientStop Offset="0" Color="Transparent" />
-                                    <RadialGradientBrush.Transform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleY="0.65" />
-                                        </TransformGroup>
-                                    </RadialGradientBrush.Transform>
-                                </RadialGradientBrush>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                        <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"/>
-                    </Grid>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-
-        <Button Name="close_enigma" Background="#00FF0000" Margin="10,10,17,10" Grid.Column="1" Height="Auto" BorderBrush="#00707070" Foreground="#00000000">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <Ellipse StrokeThickness="0" Margin="10,10,17.4,0.2">
-                            <Ellipse.Fill>
-                                <RadialGradientBrush>
-                                    <GradientStop Offset="0" Color="Transparent" />
-                                    <RadialGradientBrush.Transform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleY="0.55" />
-                                        </TransformGroup>
-                                    </RadialGradientBrush.Transform>
-                                </RadialGradientBrush>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                        <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"/>
-                    </Grid>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+        <Button Template="{StaticResource circle}" Name="jedna" Content="1" Margin="307,20,1012.4,14.6" Height="Auto" Grid.Row="2" Foreground="White" FontSize="40"/>
+        <Button Template="{StaticResource circle}" Name="close_enigma" Margin="10,10,17,10" Height="Auto" Grid.Column="1"/>
 
     </Grid>
 </UserControl>

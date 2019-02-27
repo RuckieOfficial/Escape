@@ -32,7 +32,6 @@ namespace Escape {
         int light1_state = 1;
         bool pic_l_dop = true;
         bool pic_r_dop = true;
-        bool enigma = false;
 
         private Frame parentFrame;
         DispatcherTimer dopamin_timer = new DispatcherTimer();
