@@ -37,11 +37,13 @@ namespace Escape {
         private Frame parentFrame;
         DispatcherTimer dopamin_timer = new DispatcherTimer();
 
-        Dictionary<string, Uri> prison_bg = new Dictionary<string, Uri>();
-        Dictionary<string, Uri> light_state_img = new Dictionary<string, Uri>();
-
         static string ingame = @"sound/ingame.wav";
         SoundPlayer music = new SoundPlayer(ingame);
+        MediaPlayer switchon = new MediaPlayer();
+        MediaPlayer switchoff = new MediaPlayer();
+
+        Dictionary<string, Uri> prison_bg = new Dictionary<string, Uri>();
+        Dictionary<string, Uri> light_state_img = new Dictionary<string, Uri>();
 
         private void initializeBG() {
             prison_bg.Add("PrisonBG1", new Uri(@"img/bg/bg_game_1.jpg", UriKind.Relative));
@@ -49,6 +51,12 @@ namespace Escape {
             prison_bg.Add("PrisonBG3", new Uri(@"img/bg/bg_game_3.jpg", UriKind.Relative));
             prison_bg.Add("PrisonBG4", new Uri(@"img/bg/bg_game_4.jpg", UriKind.Relative));
         }
+
+        private void initializeMusic() {
+            switchon.Open(new Uri(@"sound/switch_on.mp3", UriKind.Relative));
+            switchoff.Open(new Uri(@"sound/switch_off.mp3", UriKind.Relative));
+        }
+
         private void initializeLights() {
             light_state_img.Add("Lightoff", new Uri(@"img/items/lights/lightoff.png", UriKind.Relative));
             light_state_img.Add("Lighton", new Uri(@"img/items/lights/lighton.png", UriKind.Relative));
@@ -61,14 +69,15 @@ namespace Escape {
         }
 
         List<string> consoleCommands = new List<string> { "help", "clear", "color" };
-        List<string> consoleCommands_admin = new List<string> 
+        List<string> consoleCommands_admin = new List<string>
         { "help", "clear", "heal", "get high", "color", "freeze", "unfreeze" , "exit" };
         Stack<string> lastConsoleComands = new Stack<string>();
 
         public Prison() {
             InitializeComponent();
-            initializeAll();
             initializeBG();
+            initializeMusic();
+            initializeAll();
             initializeBars();
             initializeLights();
             initializeFlares();
@@ -102,13 +111,13 @@ namespace Escape {
                 sound_state = 0;
 
             } else {
-                music.PlayLooping();
+                music.Play();
                 sound_state = 1;
             }
         }
 
         void initializeAll() {
-            music.PlayLooping();
+            music.Play();
         }
 
         void initializeBars() {
@@ -190,10 +199,11 @@ namespace Escape {
 
         // -------------- Místnost 1 --------------
 
-       void lightSwitch(object sender, RoutedEventArgs e) {
+        void lightSwitch(object sender, RoutedEventArgs e) {
             if (light1_state == 1) {
                 light1_state = 0;
                 flareone();
+                switchoff.Play();
                 light1.Source = new BitmapImage(light_state_img["Lightoff"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareY"]);
                 dopamin_timer.Tick -= new EventHandler(dopamin_Tick);
@@ -205,6 +215,7 @@ namespace Escape {
             } else {
                 light1_state = 1;
                 flareone();
+                switchon.Play();
                 light1.Source = new BitmapImage(light_state_img["Lighton"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareY"]);
                 dopamin_timer.Tick -= new EventHandler(dopamin_Tick);
@@ -220,6 +231,7 @@ namespace Escape {
             if (light1_state == 0 || light1_state == 1) {
                 light1_state = 2;
                 flareone();
+                switchon.Play();
                 light1.Source = new BitmapImage(light_state_img["Lightuv"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareUV"]);
                 dopamin_timer.Tick -= new EventHandler(dopamin_Tick);
@@ -231,6 +243,7 @@ namespace Escape {
             } else {
                 light1_state = 0;
                 flareone();
+                switchoff.Play();
                 light1.Source = new BitmapImage(light_state_img["Lightoff"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareUV"]);
                 dopamin_timer.Tick -= new EventHandler(dopamin_Tick);
@@ -330,7 +343,7 @@ namespace Escape {
                         }
                     } else {
                         if (consoleInput != "/color") {
-                            consoleInput = DateTime.Now.ToString("HH:mm") +"   " + "Unknown command '" + new string(commandArray.Skip(1).ToArray()) + "'\n";
+                            consoleInput = DateTime.Now.ToString("HH:mm") + "   " + "Unknown command '" + new string(commandArray.Skip(1).ToArray()) + "'\n";
                         }
                     }
                 } else {
@@ -384,7 +397,7 @@ namespace Escape {
                 commandExist = true;
             }
 
-                if (command == "help") {
+            if (command == "help") {
                 gameConsoleInfo.Text = gameConsoleInfo.Text + "######## Příkazy ########\n\n";
                 if (admin == false) {
                     foreach (string consoleCommand in consoleCommands) {
@@ -460,7 +473,7 @@ namespace Escape {
             if (e.Key == Key.Down) {
                 lastCommandDown();
             }
-        
+
             // Odeslání příkazu
             if (e.Key == Key.Enter) {
                 sendGameConsoleData();

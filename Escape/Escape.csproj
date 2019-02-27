@@ -170,6 +170,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="sound\switch_off.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\switch_on.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="img\items\room1\light_switch.jpg" />
     <Resource Include="img\items\room1\enigma\enigma_bg.jpg" />
     <Resource Include="img\items\room1\enigma\green_indicator.png" />
