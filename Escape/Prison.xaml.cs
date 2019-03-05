@@ -231,7 +231,7 @@ namespace Escape {
         }
 
         void lightSwitchUv(object sender, RoutedEventArgs e) {
-            if (light1_state == 0 || light1_state == 1) {
+            if (light1_state == 1) {
                 light1_state = 2;
                 flareone();
                 initializeMusic();

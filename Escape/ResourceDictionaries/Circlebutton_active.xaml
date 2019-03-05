@@ -5,15 +5,11 @@
         <Grid>
             <Ellipse StrokeThickness="0">
                 <Ellipse.Fill>
-                    <RadialGradientBrush>
-                        <GradientStop Offset="0" Color="White" />
-                        <RadialGradientBrush.Transform>
-                            <TransformGroup>
-                                <ScaleTransform ScaleY="0.65" />
-                            </TransformGroup>
-                        </RadialGradientBrush.Transform>
-                    </RadialGradientBrush>
+                    <SolidColorBrush Color="White"/>
                 </Ellipse.Fill>
+                <Ellipse.Effect>
+                    <DropShadowEffect Color="White" Direction = "0" BlurRadius = "20" ShadowDepth = "0" Opacity = "1"/>
+                </Ellipse.Effect>
             </Ellipse>
             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
