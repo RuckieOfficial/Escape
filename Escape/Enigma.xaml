@@ -26,6 +26,22 @@
         <Button Content="Green" Click="green" Background="White" Margin="966,69,319,56" Grid.Row="5"/>
 
         <Button Template="{StaticResource circle}" Name="jedna" Content="1" Margin="307,20,1012.4,14.6" Height="Auto" Grid.Row="2" Foreground="White" FontSize="40"/>
+        <Button Template="{StaticResource circle}" Name="dva" Content="2" Margin="409,20,910.4,14.6" Height="Auto" Grid.Row="2" Foreground="White" FontSize="40"/>
+        <Button Template="{StaticResource circle}" Name="tri" Content="3" Margin="527,20,792.4,14.6" Height="Auto" Grid.Row="2" Foreground="White" FontSize="40"/>
+        <Button Template="{StaticResource circle}" Name="ctyri" Content="4" Margin="626,20,693.4,14.6" Height="Auto" Grid.Row="2" Foreground="White" FontSize="40"/>
+        <Button Template="{StaticResource circle}" Name="pet" Content="5" Margin="724,20,595.4,14.6" Height="Auto" Grid.Row="2" Foreground="White" FontSize="40"/>
+        <Button Template="{StaticResource circle}" Name="sest" Content="6" Margin="825,20,494.4,14.6" Height="Auto" Grid.Row="2" Foreground="White" FontSize="40"/>
+        <Button Template="{StaticResource circle}" Name="sedm" Content="7" Margin="931,20,388.4,14.6" Height="Auto" Grid.Row="2" Foreground="White" FontSize="40"/>
+        <Button Template="{StaticResource circle}" Name="osm" Content="8" Margin="1033,20,286.4,14.6" Height="Auto" Grid.Row="2" Foreground="White" FontSize="40"/>
+        <Button Template="{StaticResource circle}" Name="devet" Content="9" Margin="1136,20,183.4,14.6" Height="Auto" Grid.Row="2" Foreground="White" FontSize="40"/>
+
+        <Button Template="{StaticResource circle_active}" Name="letter_a" Content="A" Margin="304,9.8,1010.4,204.6" Height="Auto" Grid.Row="4" Foreground="Black" FontSize="40">
+           <!-- <Button.Effect>
+                <BlurEffect Radius="20"/>
+            </Button.Effect>-->
+        </Button>
+        <Button Template="{StaticResource circle}" Name="letter_b" Content="B" Margin="409,9.8,910.4,204.6" Height="Auto" Grid.Row="4" Foreground="White" FontSize="40"/>
+
         <Button Template="{StaticResource circle}" Name="close_enigma" Margin="10,10,17,10" Height="Auto" Grid.Column="1"/>
 
     </Grid>
