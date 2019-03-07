@@ -23,72 +23,97 @@ namespace Escape {
 
         int click_count = 0;
         int led_pos = 1;
+        string word = null;
         bool validate = true;
+        public bool success = false;
+
+        private Frame frame;
 
         DispatcherTimer reset_timer = new DispatcherTimer();
         DispatcherTimer leds = new DispatcherTimer();
 
         public Enigma() {
             InitializeComponent();
-            initializeButtons();
+            setintervals();
         }
 
-        void initializeButtons() {
-            /*
-            letter_a.Template = FindResource("circle") as ControlTemplate;*/
+        public void getFrame(Frame frame) {
+            this.frame = frame;
+        }
+
+        void setintervals() {
+            reset_timer.Interval = new TimeSpan(0, 0, 0, 0, 4000);
+            reset_timer.Tick += new EventHandler(reset);
+            leds.Interval = TimeSpan.FromMilliseconds(500);
+            leds.Tick += new EventHandler(leds_animation);
         }
 
         void validator() {
             if (click_count == 4) {
-                leds_f();
-                reset_timer.Interval = new TimeSpan(0, 0, 0, 0, 4000);
-                reset_timer.Tick += new EventHandler(reset);
+                if (word != "help") {
+                    validate = false;
+                }
+                leds.Start();
                 reset_timer.Start();
+                word = null;
             }
         }
 
         void one(object sender, RoutedEventArgs e) {
             letter_p.Template = FindResource("circle_active") as ControlTemplate;
             letter_p.Foreground = Brushes.Black;
+            word += "p";
             click_count++;
             validator();
         }
         void two(object sender, RoutedEventArgs e) {
             letter_e.Template = FindResource("circle_active") as ControlTemplate;
             letter_e.Foreground = Brushes.Black;
+            word += "e";
             click_count++;
             validator();
         }
         void three(object sender, RoutedEventArgs e) {
             letter_l.Template = FindResource("circle_active") as ControlTemplate;
             letter_l.Foreground = Brushes.Black;
+            word += "l";
             click_count++;
             validator();
         }
         void four(object sender, RoutedEventArgs e) {
-            letter_q.Template = FindResource("circle_active") as ControlTemplate;
-            letter_q.Foreground = Brushes.Black;
+            letter_b.Template = FindResource("circle_active") as ControlTemplate;
+            letter_b.Foreground = Brushes.Black;
+            letter_n.Template = FindResource("circle_active") as ControlTemplate;
+            letter_n.Foreground = Brushes.Black;
+            letter_j.Template = FindResource("circle_active") as ControlTemplate;
+            letter_j.Foreground = Brushes.Black;
             click_count++;
             validate = false;
             validator();
         }
         void five(object sender, RoutedEventArgs e) {
-            letter_q.Template = FindResource("circle_active") as ControlTemplate;
-            letter_q.Foreground = Brushes.Black;
+            letter_a.Template = FindResource("circle_active") as ControlTemplate;
+            letter_a.Foreground = Brushes.Black;
+            letter_o.Template = FindResource("circle_active") as ControlTemplate;
+            letter_o.Foreground = Brushes.Black;
             click_count++;
             validate = false;
             validator();
         }
         void six(object sender, RoutedEventArgs e) {
-            letter_q.Template = FindResource("circle_active") as ControlTemplate;
-            letter_q.Foreground = Brushes.Black;
+            letter_u.Template = FindResource("circle_active") as ControlTemplate;
+            letter_u.Foreground = Brushes.Black;
             click_count++;
             validate = false;
             validator();
         }
         void seven(object sender, RoutedEventArgs e) {
-            letter_q.Template = FindResource("circle_active") as ControlTemplate;
-            letter_q.Foreground = Brushes.Black;
+            letter_d.Template = FindResource("circle_active") as ControlTemplate;
+            letter_d.Foreground = Brushes.Black;
+            letter_p.Template = FindResource("circle_active") as ControlTemplate;
+            letter_p.Foreground = Brushes.Black;
+            letter_i.Template = FindResource("circle_active") as ControlTemplate;
+            letter_i.Foreground = Brushes.Black;
             click_count++;
             validate = false;
             validator();
@@ -96,21 +121,16 @@ namespace Escape {
         void eight(object sender, RoutedEventArgs e) {
             letter_h.Template = FindResource("circle_active") as ControlTemplate;
             letter_h.Foreground = Brushes.Black;
+            word += "h";
             click_count++;
             validator();
         }
         void nine(object sender, RoutedEventArgs e) {
-            letter_q.Template = FindResource("circle_active") as ControlTemplate;
-            letter_q.Foreground = Brushes.Black;
+            letter_k.Template = FindResource("circle_active") as ControlTemplate;
+            letter_k.Foreground = Brushes.Black;
             click_count++;
             validate = false;
             validator();
-        }
-
-        void leds_f() {
-            leds.Interval = TimeSpan.FromMilliseconds(500);
-            leds.Tick += new EventHandler(leds_animation);
-            leds.Start();
         }
 
         void leds_animation(object sender, EventArgs e) {
@@ -149,6 +169,9 @@ namespace Escape {
                     led_pos = 0;
                     validate = true;
                     leds.Stop();
+                    success = true;
+                    this.Visibility = Visibility.Hidden;
+
                 }
             } else {
                 if (led_pos == 1) {
@@ -185,6 +208,7 @@ namespace Escape {
                     led_pos = 0;
                     validate = true;
                     leds.Stop();
+                    this.Visibility = Visibility.Hidden;
                 }
             }
             led_pos++;

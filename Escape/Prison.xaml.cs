@@ -22,12 +22,6 @@ namespace Escape {
     /// </summary>
     public partial class Prison : Page {
 
-        int lastCommandIndex = 0;
-        int actual_hp = 100;
-        int actual_dopamine = 100;
-        int dopamin_speed = 3000;
-        int sound_state = 1;
-        bool admin = false;
         //Místnost 1
         int light1_state = 0;
         bool pic_l_dop = true;
@@ -105,13 +99,13 @@ namespace Escape {
         }
 
         public void sound(object sender, RoutedEventArgs e) {
-            if (sound_state == 1) {
+            if (Globals.sound_state == 1) {
                 music.Stop();
-                sound_state = 0;
+                Globals.sound_state = 0;
 
             } else {
                 music.Play();
-                sound_state = 1;
+                Globals.sound_state = 1;
             }
         }
 
@@ -138,12 +132,12 @@ namespace Escape {
         }
 
         void informace() {
-            hp.Content = actual_hp + "%";
-            if (actual_dopamine > 100) {
-                actual_dopamine = 100;
-                dopamin.Content = actual_dopamine + "%";
+            hp.Content = Globals.actual_hp + "%";
+            if (Globals.actual_dopamine > 100) {
+                Globals.actual_dopamine = 100;
+                dopamin.Content = Globals.actual_dopamine + "%";
             } else {
-                dopamin.Content = actual_dopamine + "%";
+                dopamin.Content = Globals.actual_dopamine + "%";
             }
         }
 
@@ -161,17 +155,17 @@ namespace Escape {
 
         // DOPAMIN
         void dopamin_counter() {
-            dopamin_timer.Interval = new TimeSpan(0, 0, 0, 0, dopamin_speed);
+            dopamin_timer.Interval = new TimeSpan(0, 0, 0, 0, Globals.dopamin_speed);
             dopamin_timer.Tick += new EventHandler(dopamin_Tick);
             dopamin_timer.Start();
         }
 
         void dopamin_Tick(object sender, EventArgs e) {
-            if (actual_dopamine > 0) {
-                actual_dopamine--;
+            if (Globals.actual_dopamine > 0) {
+                Globals.actual_dopamine--;
             }
             drugBar.Value--;
-            dopamin.Content = actual_dopamine + "%";
+            dopamin.Content = Globals.actual_dopamine + "%";
         }
 
         // Ovládání
@@ -207,7 +201,7 @@ namespace Escape {
                 light1.Source = new BitmapImage(light_state_img["Lightoff"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareY"]);
                 dopamin_timer.Tick -= new EventHandler(dopamin_Tick);
-                dopamin_speed = 5000;
+                Globals.dopamin_speed = 5000;
                 dopamin_counter();
                 dark1.Visibility = Visibility.Visible;
                 pin.Visibility = Visibility.Hidden;
@@ -221,7 +215,7 @@ namespace Escape {
                 light1.Source = new BitmapImage(light_state_img["Lighton"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareY"]);
                 dopamin_timer.Tick -= new EventHandler(dopamin_Tick);
-                dopamin_speed = 3000;
+                Globals.dopamin_speed = 3000;
                 dopamin_counter();
                 dark1.Visibility = Visibility.Hidden;
                 pin.Visibility = Visibility.Hidden;
@@ -239,7 +233,7 @@ namespace Escape {
                 light1.Source = new BitmapImage(light_state_img["Lightuv"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareUV"]);
                 dopamin_timer.Tick -= new EventHandler(dopamin_Tick);
-                dopamin_speed = 500;
+                Globals.dopamin_speed = 500;
                 dopamin_counter();
                 dark1.Visibility = Visibility.Hidden;
                 pin.Visibility = Visibility.Visible;
@@ -253,7 +247,7 @@ namespace Escape {
                 light1.Source = new BitmapImage(light_state_img["Lightoff"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareUV"]);
                 dopamin_timer.Tick -= new EventHandler(dopamin_Tick);
-                dopamin_speed = 5000;
+                Globals.dopamin_speed = 5000;
                 dopamin_counter();
                 dark1.Visibility = Visibility.Visible;
                 pin.Visibility = Visibility.Hidden;
@@ -307,26 +301,39 @@ namespace Escape {
         }
 
         public void openenigma(object sender, RoutedEventArgs e) {
+            light1_state = 0;
             item_enigma.Visibility = Visibility.Visible;
+            item_enigma.IsVisibleChanged += _IsVisibleChanged;
         }
         void enigma_close(object sender, RoutedEventArgs e) {
             item_enigma.Visibility = Visibility.Hidden;
         }
 
+        void _IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e) {
+            if (!((bool)e.NewValue)) {
+                if (item_enigma.success) {
+                    MessageBox.Show("JO!");
+                } else {
+                    MessageBox.Show("NE!");
+                }
+            }
+            item_enigma.IsVisibleChanged -= _IsVisibleChanged;
+        }
+
         public void takerdopamin(object sender, RoutedEventArgs e) {
             rdopamin.Visibility = Visibility.Hidden;
-            actual_dopamine += 15;
+            Globals.actual_dopamine += 15;
             informace();
-            drugBar.Value = actual_dopamine;
+            drugBar.Value = Globals.actual_dopamine;
             pic_r_dop = false;
         }
 
         public void takeldopamin(object sender, RoutedEventArgs e) {
             var mona = new ImageBrush();
             ldopamin.Visibility = Visibility.Hidden;
-            actual_dopamine += 15;
+            Globals.actual_dopamine += 15;
             informace();
-            drugBar.Value = actual_dopamine;
+            drugBar.Value = Globals.actual_dopamine;
             pic_l_dop = false;
         }
 
@@ -368,29 +375,29 @@ namespace Escape {
             bool commandExist = false;
             if (command == "login admin") {
                 commandExist = true;
-                admin = true;
-            } else if (command == "logout" && admin == true) {
+                Globals.admin = true;
+            } else if (command == "logout" && Globals.admin == true) {
                 commandExist = true;
-                admin = false;
-            } else if (command == "heal" && admin == true) {
+                Globals.admin = false;
+            } else if (command == "heal" && Globals.admin == true) {
                 commandExist = true;
-            } else if (command == "get high" && admin == true) {
+            } else if (command == "get high" && Globals.admin == true) {
                 commandExist = true;
-                actual_dopamine = 100;
+                Globals.actual_dopamine = 100;
                 drugBar.Value = 100;
-                dopamin.Content = actual_dopamine + "%";
-            } else if (command == "freeze" && admin == true) {
+                dopamin.Content = Globals.actual_dopamine + "%";
+            } else if (command == "freeze" && Globals.admin == true) {
                 commandExist = true;
                 dopamin_timer.Stop();
-            } else if (command == "unfreeze" && admin == true) {
+            } else if (command == "unfreeze" && Globals.admin == true) {
                 commandExist = true;
                 dopamin_timer.Start();
-            } else if (command == "back monalisa" && admin == true) {
+            } else if (command == "back monalisa" && Globals.admin == true) {
                 var monaorig = new ImageBrush();
                 monaorig.ImageSource = new BitmapImage(new Uri(@"img/items/room1/picture_monalisa.png", UriKind.Relative));
                 monalisa.Background = monaorig;
                 commandExist = true;
-            } else if (command == "exit" && admin == true) {
+            } else if (command == "exit" && Globals.admin == true) {
                 commandExist = true;
                 System.Windows.Application.Current.Shutdown();
             } else if (command == "color") {
@@ -408,7 +415,7 @@ namespace Escape {
 
             if (command == "help") {
                 gameConsoleInfo.Text = gameConsoleInfo.Text + "######## Příkazy ########\n\n";
-                if (admin == false) {
+                if (Globals.admin == false) {
                     foreach (string consoleCommand in consoleCommands) {
                         gameConsoleInfo.Text = gameConsoleInfo.Text + "/" + consoleCommand + "\n";
                     }
@@ -438,17 +445,17 @@ namespace Escape {
             }
             if (commandExist) {
                 lastConsoleComands.Push(command);
-                lastCommandIndex = 0;
+                Globals.lastCommandIndex = 0;
             }
             return commandExist;
         }
 
         void lastCommandUp() {
             try {
-                gameConsoleInput.Text = "/" + lastConsoleComands.ElementAt(lastCommandIndex);
+                gameConsoleInput.Text = "/" + lastConsoleComands.ElementAt(Globals.lastCommandIndex);
 
-                if (lastCommandIndex + 1 < lastConsoleComands.Count) {
-                    lastCommandIndex++;
+                if (Globals.lastCommandIndex + 1 < lastConsoleComands.Count) {
+                    Globals.lastCommandIndex++;
                 }
             } catch (Exception) {
             }
@@ -456,10 +463,10 @@ namespace Escape {
 
         void lastCommandDown() {
             try {
-                if (lastCommandIndex - 1 >= 0) {
-                    lastCommandIndex--;
+                if (Globals.lastCommandIndex - 1 >= 0) {
+                    Globals.lastCommandIndex--;
                 }
-                gameConsoleInput.Text = "/" + lastConsoleComands.ElementAt(lastCommandIndex);
+                gameConsoleInput.Text = "/" + lastConsoleComands.ElementAt(Globals.lastCommandIndex);
             } catch (Exception) {
             }
         }

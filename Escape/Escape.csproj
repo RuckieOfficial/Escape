@@ -83,6 +83,7 @@
     <Compile Include="Enigma.xaml.cs">
       <DependentUpon>Enigma.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Globals.cs" />
     <Compile Include="Intro.xaml.cs">
       <DependentUpon>Intro.xaml</DependentUpon>
     </Compile>
