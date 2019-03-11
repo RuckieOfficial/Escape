@@ -324,7 +324,8 @@ namespace Escape {
                 if (item_enigma.success) {
 
                 } else {
-
+                    Globals.actual_dopamine -= 10;
+                    drugBar.Value = Globals.actual_dopamine;
                 }
             }
             item_enigma.IsVisibleChanged -= _IsVisibleChanged;
@@ -379,7 +380,7 @@ namespace Escape {
                 animace.AutoReverse = true;
             } else {
                 animace = new DoubleAnimation {
-                    From = 0.02,
+                    From = 0.005,
                     To = 0.01,
                     BeginTime = TimeSpan.FromSeconds(0),
                     Duration = TimeSpan.FromSeconds(0.1),
@@ -439,7 +440,7 @@ namespace Escape {
             } else if (command == "get high" && Globals.admin == true) {
                 commandExist = true;
                 Globals.actual_dopamine = 100;
-                drugBar.Value = 100;
+                drugBar.Value = Globals.actual_dopamine;
                 dopamin.Content = Globals.actual_dopamine + "%";
             } else if (command == "freeze" && Globals.admin == true) {
                 commandExist = true;
