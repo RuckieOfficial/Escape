@@ -21,45 +21,62 @@
         <!--Obsah-->
         <Image Name="bg" Source="img\bg\bg_game_1.jpg" Grid.ColumnSpan="2" Grid.RowSpan="2" Stretch="Fill"/>
         <!--Room1-->
-        <Image Source="img\items\room1\light_switch.jpg" Margin="691,248,51,144"/>
-        <Image Source="img\items\room1\pin.png" Name="pin" Visibility="Hidden" Margin="438,-27,115,188" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="17.099"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <Image Source="img\items\character\character_state_1.png" Margin="493,147,52,400" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5"/>
-        <Button Name="light_switch" Click="lightSwitch" FontSize="10px"  Background="Transparent" Margin="692,248,64,144" BorderBrush="#00707070" Foreground="#00000000" Height="Auto"/>
-        <Button Name="light_switch_uv" Click="lightSwitchUv" FontSize="10px" Background="Transparent" Margin="703,248,52,144" BorderBrush="#00707070" Foreground="#00000000" Height="Auto"/>
-        <Button Name="monalisa" Margin="164,177,519,144" Click="openmonalisa" Height="Auto" BorderBrush="{x:Null}" Foreground="{x:Null}">
-            <Button.Background>
-                <ImageBrush ImageSource="img/items/room1/picture_monalisa.png"/>
-            </Button.Background>
-        </Button>
-        <Button Name="enigma_button" Click="openenigma" Visibility="Hidden" Background="Transparent" BorderBrush="Transparent" Height="Auto" Margin="193,242,541,154"/>
-        <Button Name="rdopamin" Visibility="Hidden" Margin="228,217,527,152" Click="takerdopamin" Height="Auto" BorderBrush="{x:Null}" Foreground="{x:Null}">
-            <Button.Background>
-                <ImageBrush ImageSource="img\items\room1\dopamin_inpic_r.png"/>
-            </Button.Background>
-        </Button>
-        <Button Name="ldopamin" Visibility="Hidden" Margin="179,238,571,153" Click="takeldopamin" Height="Auto" BorderBrush="{x:Null}" Foreground="{x:Null}">
-            <Button.Background>
-                <ImageBrush ImageSource="img\items\room1\dopamin_inpic_l.png"/>
-            </Button.Background>
-        </Button>
+        <Grid Name="room1">
+            <Image Source="img\items\room1\light_switch.jpg" Name="l" Margin="691,248,51,144"/>
+            <Image Source="img\items\room1\pin.png" Name="pin" Visibility="Hidden" Margin="438,-27,115,188" RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="17.099"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image Source="img\items\character\character_state_1.png" Margin="493,147,52,0" RenderTransformOrigin="0.5,0.5"/>
+            <Button Name="light_switch" Click="lightSwitch" FontSize="10px"  Background="Transparent" Margin="692,248,64,144" BorderBrush="#00707070" Foreground="#00000000" Height="Auto"/>
+            <Button Name="light_switch_uv" Click="lightSwitchUv" FontSize="10px" Background="Transparent" Margin="703,248,52,144" BorderBrush="#00707070" Foreground="#00000000" Height="Auto"/>
+            <Button Name="monalisa" Margin="164,177,519,144" Click="openmonalisa" Height="Auto" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="img/items/room1/picture_monalisa.png"/>
+                </Button.Background>
+            </Button>
+            <Button Name="enigma_button" Click="openenigma" Visibility="Hidden" Background="Transparent" BorderBrush="Transparent" Height="Auto" Margin="193,242,541,154"/>
+            <Button Name="rdopamin" Visibility="Hidden" Margin="228,217,527,152" Click="takerdopamin" Height="Auto" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="img\items\room1\dopamin_inpic_r.png"/>
+                </Button.Background>
+            </Button>
+            <Button Name="ldopamin" Visibility="Hidden" Margin="179,238,571,153" Click="takeldopamin" Height="Auto" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="img\items\room1\dopamin_inpic_l.png"/>
+                </Button.Background>
+            </Button>
 
-        <Image Source="img\items\room1\toilet.png" Margin="-10,271,662,0" RenderTransformOrigin="0.5,0.5"/>
-        <Image Name="hand" Source="img\items\room1\hand.png" Visibility="Hidden" IsHitTestVisible="False" Opacity="1" d:IsHidden="False" Margin="42,347,684,33"/>
+            <Image Source="img\items\room1\toilet.png" Margin="-10,271,662,0" RenderTransformOrigin="0.5,0.5"/>
+            <Image Name="hand" Source="img\items\room1\hand.png" Visibility="Hidden" IsHitTestVisible="False" Opacity="1" d:IsHidden="False" Margin="42,347,684,33"/>
 
-        <Image Name="light1" Source="img\items\lights\lightoff.png" Margin="180,0,185,198"/>
-        <Image Name="flare1" Source="img\items\flares\flareY.png" Visibility="Hidden" IsHitTestVisible="False" Opacity="0.8" d:IsHidden="False" Margin="0,-9,4,0"/>
-        <Rectangle Name="dark1" Visibility="Visible" Fill="Black" Opacity="0.5" IsHitTestVisible="False" Width="Auto" Height="Auto" Grid.Row="0" Grid.Column="0" Margin="0,0,10,0"/>
+            <Image Name="light1" Source="img\items\lights\lightoff.png" Margin="180,0,185,198"/>
+            <Image Name="flare1" Source="img\items\flares\flareY.png" Visibility="Hidden" IsHitTestVisible="False" Opacity="0.8" d:IsHidden="False" Margin="0,-9,4,0"/>
+            <Rectangle Name="dark1" Visibility="Visible" Fill="Black" Opacity="0.5" IsHitTestVisible="False" Width="Auto" Height="Auto" Grid.Row="0" Grid.Column="0" Margin="0,0,10,0"/>
+        </Grid>
         <local:Enigma x:Name="item_enigma" Panel.ZIndex="1" Visibility="Hidden" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
         <!--Room2-->
+        <Grid Name="room2" Visibility="Hidden" Grid.Column="1 ">
+            <Image Name="table_off" gif:ImageBehavior.RepeatBehavior="Forever"
+               gif:ImageBehavior.AnimatedSource="img/items/room2/table_off.gif" Margin="391,151,-113,0" />
+            <Image Name="table_on" Visibility="Collapsed" gif:ImageBehavior.RepeatBehavior="Forever"
+               gif:ImageBehavior.AnimatedSource="img/items/room2/table_on.gif" Grid.Column="1" Margin="406,151,-128,0" />
+
+            <Image Name="flare2_off" Source="img\items\flares\flarePC_OFF.png" Visibility="Visible" Opacity="0" IsHitTestVisible="False" d:IsHidden="False" Margin="0,-11,0,0" Grid.Column="1"/>
+            <Image Name="flare2" Source="img\items\flares\flarePC.png" Visibility="Hidden" IsHitTestVisible="False" d:IsHidden="False" Margin="0,-11,0,0" Grid.Column="1"/>
+            <Button Content="ON/OFF" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="5" Click="pc" Margin="667,335,84,74" RenderTransformOrigin="0.5,0.5" Height="Auto" BorderBrush="#00707070" Background="#19000000">
+                <Button.RenderTransform> <TransformGroup> <ScaleTransform/> <SkewTransform/>
+                        <RotateTransform Angle="5.044"/>
+                        <TranslateTransform/> </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+        </Grid>
         <!--Room4-->
         <!--Room3-->
         <Button Content="Menu" FontSize="50" Click="go_menu" Margin="283,258,10,91" RenderTransformOrigin="0.5,0.5" Height="Auto" Grid.Row="1" Grid.Column="1"/>

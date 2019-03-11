@@ -24,6 +24,7 @@ namespace Escape {
 
         //Místnost 1
         int light1_state = 0;
+        int light2_state = 0;
         bool pic_l_dop = true;
         bool pic_r_dop = true;
 
@@ -75,6 +76,7 @@ namespace Escape {
             initializeLights();
             initializeFlares();
             initializeRoom1();
+            initializeRoom2();
         }
         public Prison(Frame parentFrame) : this() {
             this.parentFrame = parentFrame;
@@ -87,9 +89,13 @@ namespace Escape {
 
         public void prvni(object sender, RoutedEventArgs e) {
             bg.Source = new BitmapImage(prison_bg["PrisonBG1"]);
+            room2.Visibility = Visibility.Hidden;
+            room1.Visibility = Visibility.Visible;
         }
         public void druhy(object sender, RoutedEventArgs e) {
             bg.Source = new BitmapImage(prison_bg["PrisonBG2"]);
+            room1.Visibility = Visibility.Hidden;
+            room2.Visibility = Visibility.Visible;
         }
         public void treti(object sender, RoutedEventArgs e) {
             bg.Source = new BitmapImage(prison_bg["PrisonBG3"]);
@@ -131,7 +137,11 @@ namespace Escape {
             item_enigma.close_enigma.Click += new RoutedEventHandler(enigma_close);
         }
 
-        void informace() {
+        void initializeRoom2() {
+            flaretwo();
+        }
+
+            void informace() {
             hp.Content = Globals.actual_hp + "%";
             if (Globals.actual_dopamine > 100) {
                 Globals.actual_dopamine = 100;
@@ -257,7 +267,7 @@ namespace Escape {
 
         }
 
-        public void flareone() {
+        void flareone() {
             DoubleAnimation animace;
             if (light1_state == 1) {
                 animace = new DoubleAnimation {
@@ -286,7 +296,7 @@ namespace Escape {
 
         //Mona lisa
 
-        public void openmonalisa(object sender, RoutedEventArgs e) {
+        void openmonalisa(object sender, RoutedEventArgs e) {
             var mona = new ImageBrush();
             mona.ImageSource = new BitmapImage(new Uri(@"img/items/room1/picture_monalisa_opened.png", UriKind.Relative));
             monalisa.Background = mona;
@@ -300,7 +310,7 @@ namespace Escape {
             enigma_button.Visibility = Visibility.Visible;
         }
 
-        public void openenigma(object sender, RoutedEventArgs e) {
+        void openenigma(object sender, RoutedEventArgs e) {
             light1_state = 0;
             item_enigma.Visibility = Visibility.Visible;
             item_enigma.IsVisibleChanged += _IsVisibleChanged;
@@ -312,15 +322,15 @@ namespace Escape {
         void _IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e) {
             if (!((bool)e.NewValue)) {
                 if (item_enigma.success) {
-                    MessageBox.Show("JO!");
+
                 } else {
-                    MessageBox.Show("NE!");
+
                 }
             }
             item_enigma.IsVisibleChanged -= _IsVisibleChanged;
         }
 
-        public void takerdopamin(object sender, RoutedEventArgs e) {
+        void takerdopamin(object sender, RoutedEventArgs e) {
             rdopamin.Visibility = Visibility.Hidden;
             Globals.actual_dopamine += 15;
             informace();
@@ -328,7 +338,7 @@ namespace Escape {
             pic_r_dop = false;
         }
 
-        public void takeldopamin(object sender, RoutedEventArgs e) {
+        void takeldopamin(object sender, RoutedEventArgs e) {
             var mona = new ImageBrush();
             ldopamin.Visibility = Visibility.Hidden;
             Globals.actual_dopamine += 15;
@@ -337,8 +347,53 @@ namespace Escape {
             pic_l_dop = false;
         }
 
+        // -------------- Místnost 2 --------------
+        void pc(object sender, RoutedEventArgs e) {
+            if (light2_state == 0) {
+                light2_state = 1;
+                flare2_off.Visibility = Visibility.Hidden;
+                flare2.Visibility = Visibility.Visible;
+                table_off.Visibility = Visibility.Hidden;
+                table_on.Visibility = Visibility.Visible;
+                flaretwo();
+            } else {
+                light2_state = 0;
+                flare2.Visibility = Visibility.Hidden;
+                flare2_off.Visibility = Visibility.Visible;
+                table_on.Visibility = Visibility.Hidden;
+                table_off.Visibility = Visibility.Visible;
+                flaretwo();
+            }
+        }
+
+        void flaretwo() {
+            DoubleAnimation animace;
+            if (light2_state == 1) {
+                animace = new DoubleAnimation {
+                    From = 0.25,
+                    To = 0.2,
+                    BeginTime = TimeSpan.FromSeconds(0),
+                    Duration = TimeSpan.FromSeconds(0.5),
+                    FillBehavior = FillBehavior.Stop
+                };
+                animace.AutoReverse = true;
+            } else {
+                animace = new DoubleAnimation {
+                    From = 0.02,
+                    To = 0.01,
+                    BeginTime = TimeSpan.FromSeconds(0),
+                    Duration = TimeSpan.FromSeconds(0.1),
+                    FillBehavior = FillBehavior.Stop
+                };
+                animace.AutoReverse = true;
+            }
+            animace.RepeatBehavior = RepeatBehavior.Forever;
+            flare2.BeginAnimation(UIElement.OpacityProperty, animace);
+            flare2_off.BeginAnimation(UIElement.OpacityProperty, animace);
+        }
+
         // Console
-        private void gameConsole_click(object sender, RoutedEventArgs e) {
+        void gameConsole_click(object sender, RoutedEventArgs e) {
             sendGameConsoleData();
         }
 

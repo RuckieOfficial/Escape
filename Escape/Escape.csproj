@@ -183,6 +183,10 @@
   <ItemGroup>
     <Resource Include="img\items\room1\toilet.png" />
     <Resource Include="img\items\room1\hand.png" />
+    <Resource Include="img\items\flares\flarePC.png" />
+    <Resource Include="img\items\room2\table_on.gif" />
+    <Resource Include="img\items\flares\flarePC_OFF.png" />
+    <Resource Include="img\items\room2\table_off.gif" />
     <Content Include="sound\switch_off.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
