@@ -35,6 +35,8 @@ namespace Escape {
         SoundPlayer music = new SoundPlayer(ingame);
         MediaPlayer switchon = new MediaPlayer();
         MediaPlayer switchoff = new MediaPlayer();
+        MediaPlayer pcnoise = new MediaPlayer();
+        MediaPlayer pcswitch = new MediaPlayer();
 
         Dictionary<string, Uri> prison_bg = new Dictionary<string, Uri>();
         Dictionary<string, Uri> light_state_img = new Dictionary<string, Uri>();
@@ -44,11 +46,6 @@ namespace Escape {
             prison_bg.Add("PrisonBG2", new Uri(@"img/bg/bg_game_2.jpg", UriKind.Relative));
             prison_bg.Add("PrisonBG3", new Uri(@"img/bg/bg_game_3.jpg", UriKind.Relative));
             prison_bg.Add("PrisonBG4", new Uri(@"img/bg/bg_game_4.jpg", UriKind.Relative));
-        }
-
-        private void initializeMusic() {
-            switchon.Open(new Uri(@"sound/switch_on.mp3", UriKind.Relative));
-            switchoff.Open(new Uri(@"sound/switch_off.mp3", UriKind.Relative));
         }
 
         private void initializeLights() {
@@ -70,7 +67,6 @@ namespace Escape {
         public Prison() {
             InitializeComponent();
             initializeBG();
-            initializeMusic();
             initializeAll();
             initializeBars();
             initializeLights();
@@ -94,6 +90,8 @@ namespace Escape {
         }
         public void druhy(object sender, RoutedEventArgs e) {
             bg.Source = new BitmapImage(prison_bg["PrisonBG2"]);
+            pcnoise.Open(new Uri(@"sound/pc_noise.mp3", UriKind.Relative));
+            pcnoise.Play();
             room1.Visibility = Visibility.Hidden;
             room2.Visibility = Visibility.Visible;
         }
@@ -141,7 +139,7 @@ namespace Escape {
             flaretwo();
         }
 
-            void informace() {
+        void informace() {
             hp.Content = Globals.actual_hp + "%";
             if (Globals.actual_dopamine > 100) {
                 Globals.actual_dopamine = 100;
@@ -173,6 +171,10 @@ namespace Escape {
         void dopamin_Tick(object sender, EventArgs e) {
             if (Globals.actual_dopamine > 0) {
                 Globals.actual_dopamine--;
+            } else {
+                Globals.actual_hp--;
+                hpBar.Value--;
+                hp.Content = Globals.actual_hp + "%";
             }
             drugBar.Value--;
             dopamin.Content = Globals.actual_dopamine + "%";
@@ -206,7 +208,7 @@ namespace Escape {
             if (light1_state == 1) {
                 light1_state = 0;
                 flareone();
-                initializeMusic();
+                switchoff.Open(new Uri(@"sound/switch_off.mp3", UriKind.Relative));
                 switchoff.Play();
                 light1.Source = new BitmapImage(light_state_img["Lightoff"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareY"]);
@@ -220,7 +222,7 @@ namespace Escape {
             } else {
                 light1_state = 1;
                 flareone();
-                initializeMusic();
+                switchon.Open(new Uri(@"sound/switch_on.mp3", UriKind.Relative));
                 switchon.Play();
                 light1.Source = new BitmapImage(light_state_img["Lighton"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareY"]);
@@ -238,7 +240,7 @@ namespace Escape {
             if (light1_state == 1) {
                 light1_state = 2;
                 flareone();
-                initializeMusic();
+                switchon.Open(new Uri(@"sound/switch_on.mp3", UriKind.Relative));
                 switchon.Play();
                 light1.Source = new BitmapImage(light_state_img["Lightuv"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareUV"]);
@@ -252,7 +254,7 @@ namespace Escape {
             } else {
                 light1_state = 0;
                 flareone();
-                initializeMusic();
+                switchoff.Open(new Uri(@"sound/switch_off.mp3", UriKind.Relative));
                 switchoff.Play();
                 light1.Source = new BitmapImage(light_state_img["Lightoff"]);
                 flare1.Source = new BitmapImage(light_state_img["FlareUV"]);
@@ -351,14 +353,21 @@ namespace Escape {
         // -------------- Místnost 2 --------------
         void pc(object sender, RoutedEventArgs e) {
             if (light2_state == 0) {
+                pcswitch.Open(new Uri(@"sound/pc_on.mp3", UriKind.Relative));
+                pcswitch.Play();
                 light2_state = 1;
+                pcnoise.Stop();
                 flare2_off.Visibility = Visibility.Hidden;
                 flare2.Visibility = Visibility.Visible;
                 table_off.Visibility = Visibility.Hidden;
                 table_on.Visibility = Visibility.Visible;
                 flaretwo();
             } else {
+                pcswitch.Open(new Uri(@"sound/pc_off.mp3", UriKind.Relative));
+                pcswitch.Play();
                 light2_state = 0;
+                pcnoise.Open(new Uri(@"sound/pc_noise.mp3", UriKind.Relative));
+                pcnoise.Play();
                 flare2.Visibility = Visibility.Hidden;
                 flare2_off.Visibility = Visibility.Visible;
                 table_on.Visibility = Visibility.Hidden;

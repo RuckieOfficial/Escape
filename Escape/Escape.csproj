@@ -187,6 +187,15 @@
     <Resource Include="img\items\room2\table_on.gif" />
     <Resource Include="img\items\flares\flarePC_OFF.png" />
     <Resource Include="img\items\room2\table_off.gif" />
+    <Content Include="sound\pc_noise.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\pc_off.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\pc_on.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="sound\switch_off.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
