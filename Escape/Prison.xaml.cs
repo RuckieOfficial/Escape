@@ -27,6 +27,7 @@ namespace Escape {
         int light2_state = 0;
         bool pic_l_dop = true;
         bool pic_r_dop = true;
+        bool enigma_opened = false;
 
         private Frame parentFrame;
         DispatcherTimer dopamin_timer = new DispatcherTimer();
@@ -133,6 +134,11 @@ namespace Escape {
         void initializeRoom1() {
             flareone();
             item_enigma.close_enigma.Click += new RoutedEventHandler(enigma_close);
+            item_enigma_opened.close_enigma.Click += new RoutedEventHandler(enigma_opened_close);
+            item_enigma_opened.dopaminL.Click += new RoutedEventHandler(enigma_dopamin_l);
+            item_enigma_opened.dopaminM.Click += new RoutedEventHandler(enigma_dopamin_m);
+            item_enigma_opened.dopaminR.Click += new RoutedEventHandler(enigma_dopamin_r);
+            item_enigma_opened.enigmaKEY.Click += new RoutedEventHandler(enigma_Key);
         }
 
         void initializeRoom2() {
@@ -314,17 +320,48 @@ namespace Escape {
 
         void openenigma(object sender, RoutedEventArgs e) {
             light1_state = 0;
-            item_enigma.Visibility = Visibility.Visible;
-            item_enigma.IsVisibleChanged += _IsVisibleChanged;
+            if (!enigma_opened) {
+                item_enigma.Visibility = Visibility.Visible;
+                item_enigma.IsVisibleChanged += _IsVisibleChanged;
+            } else {
+                item_enigma_opened.Visibility = Visibility.Visible;
+            }
         }
         void enigma_close(object sender, RoutedEventArgs e) {
             item_enigma.Visibility = Visibility.Hidden;
+        }
+        void enigma_opened_close(object sender, RoutedEventArgs e) {
+            item_enigma_opened.Visibility = Visibility.Hidden;
+        }
+
+        void enigma_dopamin_l(object sender, RoutedEventArgs e) {
+            item_enigma_opened.dopaminL.Visibility = Visibility.Hidden;
+            Globals.actual_dopamine += 10;
+            informace();
+            drugBar.Value = Globals.actual_dopamine;
+        }
+        void enigma_dopamin_m(object sender, RoutedEventArgs e) {
+            item_enigma_opened.dopaminM.Visibility = Visibility.Hidden;
+            Globals.actual_dopamine += 10;
+            informace();
+            drugBar.Value = Globals.actual_dopamine;
+        }
+        void enigma_dopamin_r(object sender, RoutedEventArgs e) {
+            item_enigma_opened.dopaminR.Visibility = Visibility.Hidden;
+            Globals.actual_dopamine += 10;
+            informace();
+            drugBar.Value = Globals.actual_dopamine;
+        }
+        void enigma_Key(object sender, RoutedEventArgs e) {
+            item_enigma_opened.enigmaKEY.Visibility = Visibility.Hidden;
+            MessageBox.Show("LIGMA BALLS!");
         }
 
         void _IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e) {
             if (!((bool)e.NewValue)) {
                 if (item_enigma.success) {
-
+                    item_enigma_opened.Visibility = Visibility.Visible;
+                    enigma_opened = true;
                 } else {
                     Globals.actual_dopamine -= 10;
                     drugBar.Value = Globals.actual_dopamine;
@@ -335,7 +372,7 @@ namespace Escape {
 
         void takerdopamin(object sender, RoutedEventArgs e) {
             rdopamin.Visibility = Visibility.Hidden;
-            Globals.actual_dopamine += 15;
+            Globals.actual_dopamine += 10;
             informace();
             drugBar.Value = Globals.actual_dopamine;
             pic_r_dop = false;
@@ -344,7 +381,7 @@ namespace Escape {
         void takeldopamin(object sender, RoutedEventArgs e) {
             var mona = new ImageBrush();
             ldopamin.Visibility = Visibility.Hidden;
-            Globals.actual_dopamine += 15;
+            Globals.actual_dopamine += 10;
             informace();
             drugBar.Value = Globals.actual_dopamine;
             pic_l_dop = false;
@@ -355,6 +392,7 @@ namespace Escape {
             if (light2_state == 0) {
                 pcswitch.Open(new Uri(@"sound/pc_on.mp3", UriKind.Relative));
                 pcswitch.Play();
+                dark2.Opacity = 0.2;
                 light2_state = 1;
                 pcnoise.Stop();
                 flare2_off.Visibility = Visibility.Hidden;
@@ -365,6 +403,7 @@ namespace Escape {
             } else {
                 pcswitch.Open(new Uri(@"sound/pc_off.mp3", UriKind.Relative));
                 pcswitch.Play();
+                dark2.Opacity = 0.5;
                 light2_state = 0;
                 pcnoise.Open(new Uri(@"sound/pc_noise.mp3", UriKind.Relative));
                 pcnoise.Play();

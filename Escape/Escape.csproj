@@ -43,6 +43,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -68,6 +70,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Enigma_opened.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Intro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -82,6 +88,9 @@
     </Compile>
     <Compile Include="Enigma.xaml.cs">
       <DependentUpon>Enigma.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Enigma_opened.xaml.cs">
+      <DependentUpon>Enigma_opened.xaml</DependentUpon>
     </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Intro.xaml.cs">
@@ -187,6 +196,9 @@
     <Resource Include="img\items\room2\table_on.gif" />
     <Resource Include="img\items\flares\flarePC_OFF.png" />
     <Resource Include="img\items\room2\table_off.gif" />
+    <Resource Include="img\items\room1\enigma\enigma_opened.jpg" />
+    <Resource Include="img\items\room1\enigma\dopamin_enigma.png" />
+    <Resource Include="img\items\room1\enigma\key_in_enigma.png" />
     <Content Include="sound\pc_noise.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

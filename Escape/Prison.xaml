@@ -61,8 +61,10 @@
             <Rectangle Name="dark1" Visibility="Visible" Fill="Black" Opacity="0.5" IsHitTestVisible="False" Width="Auto" Height="Auto" Grid.Row="0" Grid.Column="0" Margin="0,0,10,0"/>
         </Grid>
         <local:Enigma x:Name="item_enigma" Panel.ZIndex="1" Visibility="Hidden" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <local:Enigma_opened x:Name="item_enigma_opened" Panel.ZIndex="1" Visibility="Hidden" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
         <!--Room2-->
         <Grid Name="room2" Visibility="Hidden" Grid.Column="1 ">
+            <Image Source="img\items\character\character_state_1.png" Margin="446,147,99,0" RenderTransformOrigin="0.5,0.5"/>
             <Image Name="table_off" gif:ImageBehavior.RepeatBehavior="Forever"
                gif:ImageBehavior.AnimatedSource="img/items/room2/table_off.gif" Margin="391,151,-113,0" />
             <Image Name="table_on" Visibility="Collapsed" gif:ImageBehavior.RepeatBehavior="Forever"
@@ -76,6 +78,7 @@
                         <TranslateTransform/> </TransformGroup>
                 </Button.RenderTransform>
             </Button>
+            <Rectangle Name="dark2" Visibility="Visible" Fill="Black" Opacity="0.5" IsHitTestVisible="False" Width="Auto" Height="Auto" Grid.Row="0" Grid.Column="0"/>
         </Grid>
         <!--Room4-->
         <!--Room3-->

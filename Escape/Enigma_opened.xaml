@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Escape.Enigma_opened"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Escape"
+             mc:Ignorable="d" 
+             d:DesignHeight="830" d:DesignWidth="1536">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image Source="img\items\room1\enigma\enigma_opened.jpg" Grid.ColumnSpan="2" Grid.RowSpan="6" Stretch="Fill" />
+
+        <Button Name="dopaminL" Margin="306,188,1156,316" BorderBrush="{x:Null}" Height="Auto">
+            <Button.Background>
+                <ImageBrush ImageSource="img/items/room1/enigma/dopamin_enigma.png"/>
+            </Button.Background>
+        </Button>
+        <Button Name="dopaminM" Margin="395,188,1067,316" BorderBrush="{x:Null}" Height="Auto">
+            <Button.Background>
+                <ImageBrush ImageSource="img/items/room1/enigma/dopamin_enigma.png"/>
+            </Button.Background>
+        </Button>
+        <Button Name="dopaminR" Margin="491,188,971,316" BorderBrush="{x:Null}" Height="Auto">
+            <Button.Background>
+                <ImageBrush ImageSource="img/items/room1/enigma/dopamin_enigma.png"/>
+            </Button.Background>
+        </Button>
+        <Button Name="enigmaKEY" Margin="830,492,542,258" BorderBrush="{x:Null}" Height="Auto" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform> <TransformGroup> <ScaleTransform/> <SkewTransform/>
+                    <RotateTransform Angle="38.091"/>
+                    <TranslateTransform/> </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush ImageSource="img/items/room1/enigma/key_in_enigma.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+
+        <Button Template="{StaticResource circle}" Name="close_enigma" Margin="1400,21,34,717" Height="Auto" Grid.Column="0"/>
+
+    </Grid>
+</UserControl>
