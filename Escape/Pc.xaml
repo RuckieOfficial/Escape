@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Escape.Pc"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Escape"
+             mc:Ignorable="d" 
+             Height="830" Width="1536" Loaded="Page_loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <WrapPanel x:Name="gameConsole" Width="1536" Height="830">
+            <TextBox x:Name="gameConsoleInfo" Width="1536" MaxHeight="780" TextAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" HorizontalAlignment="Left" IsReadOnly="True" VerticalAlignment="Top" Height="780" TextWrapping="Wrap" Background="Black" Foreground="Lime" BorderBrush="Black"/>
+            <TextBox x:Name="gameConsoleInput" Width="1536" FontSize="12" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Height="50" CaretBrush="Lime" Background="Black" Foreground="Lime" BorderBrush="Black"/>
+        </WrapPanel>
+    </Grid>
+</UserControl>

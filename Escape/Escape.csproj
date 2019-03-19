@@ -108,7 +108,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Prison.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="resourceDictionaries\Basicbutton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,6 +135,9 @@
     </Compile>
     <Compile Include="Pause.xaml.cs">
       <DependentUpon>Pause.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pc.xaml.cs">
+      <DependentUpon>Pc.xaml</DependentUpon>
     </Compile>
     <Compile Include="Prison.xaml.cs">
       <DependentUpon>Prison.xaml</DependentUpon>

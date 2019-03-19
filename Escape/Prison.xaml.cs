@@ -93,6 +93,9 @@ namespace Escape {
             bg.Source = new BitmapImage(prison_bg["PrisonBG2"]);
             pcnoise.Open(new Uri(@"sound/pc_noise.mp3", UriKind.Relative));
             pcnoise.Play();
+            dopamin_timer.Tick -= new EventHandler(dopamin_Tick);
+            Globals.dopamin_speed = 5000;
+            dopamin_counter();
             room1.Visibility = Visibility.Hidden;
             room2.Visibility = Visibility.Visible;
         }
@@ -354,7 +357,7 @@ namespace Escape {
         }
         void enigma_Key(object sender, RoutedEventArgs e) {
             item_enigma_opened.enigmaKEY.Visibility = Visibility.Hidden;
-            MessageBox.Show("LIGMA BALLS!");
+            druhy((Button)sender, e);
         }
 
         void _IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e) {
@@ -395,6 +398,7 @@ namespace Escape {
                 dark2.Opacity = 0.2;
                 light2_state = 1;
                 pcnoise.Stop();
+                monitor.IsEnabled = true;
                 flare2_off.Visibility = Visibility.Hidden;
                 flare2.Visibility = Visibility.Visible;
                 table_off.Visibility = Visibility.Hidden;
@@ -407,12 +411,17 @@ namespace Escape {
                 light2_state = 0;
                 pcnoise.Open(new Uri(@"sound/pc_noise.mp3", UriKind.Relative));
                 pcnoise.Play();
+                monitor.IsEnabled = false;
                 flare2.Visibility = Visibility.Hidden;
                 flare2_off.Visibility = Visibility.Visible;
                 table_on.Visibility = Visibility.Hidden;
                 table_off.Visibility = Visibility.Visible;
                 flaretwo();
             }
+        }
+
+        void use_pc(object sender, RoutedEventArgs e) {
+            pc_code.Visibility = Visibility.Visible;
         }
 
         void flaretwo() {
@@ -456,14 +465,14 @@ namespace Escape {
                 if (commandArray[0] == 47) {
                     if (gameConsoleCommands(new string(commandArray.Skip(1).ToArray()))) {
                         if (consoleInput != "/clear") {
-                            consoleInput = DateTime.Now.ToString("HH:mm") + "   " + "Command '" + new string(commandArray.Skip(1).ToArray()) + "' activated\n";
+                            consoleInput = DateTime.Now.ToString("HH:mm") + "   " + "Příkaz '" + new string(commandArray.Skip(1).ToArray()) + "' byl aktivován\n";
                         } else {
                             gameConsoleInfo.Clear();
                             consoleInput = "";
                         }
                     } else {
                         if (consoleInput != "/color") {
-                            consoleInput = DateTime.Now.ToString("HH:mm") + "   " + "Unknown command '" + new string(commandArray.Skip(1).ToArray()) + "'\n";
+                            consoleInput = DateTime.Now.ToString("HH:mm") + "   " + "Neznámý příkaz '" + new string(commandArray.Skip(1).ToArray()) + "'\n";
                         }
                     }
                 } else {
@@ -518,7 +527,7 @@ namespace Escape {
             }
 
             if (command == "help") {
-                gameConsoleInfo.Text = gameConsoleInfo.Text + "######## Příkazy ########\n\n";
+                gameConsoleInfo.Text = gameConsoleInfo.Text + "########## Příkazy ##########\n\n";
                 if (Globals.admin == false) {
                     foreach (string consoleCommand in consoleCommands) {
                         gameConsoleInfo.Text = gameConsoleInfo.Text + "/" + consoleCommand + "\n";
