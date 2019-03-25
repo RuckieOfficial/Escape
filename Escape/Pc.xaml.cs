@@ -20,11 +20,19 @@ namespace Escape {
     public partial class Pc : UserControl {
 
 
-        List<string> consoleCommands = new List<string> { "help", "clear", "color" };
+        List<string> consoleCommands = new List<string> { "help", "clear", "color", "dir" };
         Stack<string> lastConsoleComands = new Stack<string>();
 
         public Pc() {
             InitializeComponent();
+            textinPC();
+        }
+
+        void textinPC() {
+            gameConsoleInfo.Text = gameConsoleInfo.Text + "#############################################" +
+                "\n#           Welcome to Prison cumputer                                   #\n" +
+                "#           ver.1.2.0                                                                     #\n" +
+                "#############################################\nType /help for all commands\n\n";
         }
 
         void Page_loaded(object sender, RoutedEventArgs e) {
@@ -68,14 +76,14 @@ namespace Escape {
                 if (commandArray[0] == 47) {
                     if (gameConsoleCommands(new string(commandArray.Skip(1).ToArray()))) {
                         if (consoleInput != "/clear") {
-                            consoleInput = "C:/Prisoner/Desktop>"  + "Příkaz '" + new string(commandArray.Skip(1).ToArray()) + "' byl aktivován\n";
+                            consoleInput = "Command '" + new string(commandArray.Skip(1).ToArray()) + "' was activated\n";
                         } else {
                             gameConsoleInfo.Clear();
                             consoleInput = "";
                         }
                     } else {
                         if (consoleInput != "/color") {
-                            consoleInput = "C:/Prisoner/Desktop>"  + "Neznámý příkaz '" + new string(commandArray.Skip(1).ToArray()) + "'\n";
+                            consoleInput = "Undefined command '" + new string(commandArray.Skip(1).ToArray()) + "'\n";
                         }
                     }
                 } else {
@@ -90,24 +98,25 @@ namespace Escape {
         bool gameConsoleCommands(string command) {
             bool commandExist = false;
             if (command == "color") {
-                gameConsoleInfo.Text = gameConsoleInfo.Text + "C:/Prisoner/Desktop>" + "Prosím specifikuj barvu! \n";
+                gameConsoleInfo.Text = gameConsoleInfo.Text + "Please specify color! \n";
             } else if (command.Contains("color")) {
                 commandExist = true;
                 string[] barva = command.Split(' ');
                 var barva_cnvrt = (Color)ColorConverter.ConvertFromString(barva[1]);
                 gameConsoleInfo.Foreground = new SolidColorBrush(barva_cnvrt);
                 gameConsoleInput.Foreground = new SolidColorBrush(barva_cnvrt);
+                gameConsoleInput.CaretBrush = new SolidColorBrush(barva_cnvrt);
             } else if (command == "clear") {
                 commandExist = true;
             }
 
             if (command == "help") {
-                gameConsoleInfo.Text = gameConsoleInfo.Text + "######### Příkazy #########\n\n";
+                gameConsoleInfo.Text = gameConsoleInfo.Text + "################## Commands ##################\n\n";
                 foreach (string consoleCommand in consoleCommands) {
                     gameConsoleInfo.Text = gameConsoleInfo.Text + "/" + consoleCommand + "\n";
 
                 }
-                gameConsoleInfo.Text = gameConsoleInfo.Text + "\n##########################\n";
+                gameConsoleInfo.Text = gameConsoleInfo.Text + "\n#############################################\n";
                 commandExist = true;
             }
             if (commandExist) {
