@@ -28,6 +28,7 @@ namespace Escape {
         bool pic_l_dop = true;
         bool pic_r_dop = true;
         bool enigma_opened = false;
+        bool flashlight = false;
 
         private Frame parentFrame;
         DispatcherTimer dopamin_timer = new DispatcherTimer();
@@ -74,6 +75,7 @@ namespace Escape {
             initializeFlares();
             initializeRoom1();
             initializeRoom2();
+            initializeRoom3();
         }
         public Prison(Frame parentFrame) : this() {
             this.parentFrame = parentFrame;
@@ -87,6 +89,7 @@ namespace Escape {
         public void prvni(object sender, RoutedEventArgs e) {
             bg.Source = new BitmapImage(prison_bg["PrisonBG1"]);
             room2.Visibility = Visibility.Hidden;
+            room3.Visibility = Visibility.Hidden;
             room1.Visibility = Visibility.Visible;
         }
         public void druhy(object sender, RoutedEventArgs e) {
@@ -97,10 +100,20 @@ namespace Escape {
             Globals.dopamin_speed = 5000;
             dopamin_counter();
             room1.Visibility = Visibility.Hidden;
+            room3.Visibility = Visibility.Hidden;
             room2.Visibility = Visibility.Visible;
         }
         public void treti(object sender, RoutedEventArgs e) {
             bg.Source = new BitmapImage(prison_bg["PrisonBG3"]);
+            room1.Visibility = Visibility.Hidden;
+            room2.Visibility = Visibility.Hidden;
+            room3.Visibility = Visibility.Visible;
+            if (flashlight == true) {
+                room3_light.Visibility = Visibility.Visible;
+                room3_nolight.Visibility = Visibility.Hidden;
+            } else {
+                room3_nolight.Visibility = Visibility.Visible;
+            }
         }
         public void ctvrty(object sender, RoutedEventArgs e) {
             bg.Source = new BitmapImage(prison_bg["PrisonBG4"]);
@@ -146,6 +159,10 @@ namespace Escape {
 
         void initializeRoom2() {
             flaretwo();
+        }
+
+        void initializeRoom3() {
+            flarethree();
         }
 
         void informace() {
@@ -450,6 +467,21 @@ namespace Escape {
             flare2_off.BeginAnimation(UIElement.OpacityProperty, animace);
         }
 
+        // -------------- Místnost 3 --------------
+        void flarethree() {
+            DoubleAnimation animace;
+                animace = new DoubleAnimation {
+                    From = 0.8,
+                    To = 0.5,
+                    BeginTime = TimeSpan.FromSeconds(0),
+                    Duration = TimeSpan.FromSeconds(3),
+                    FillBehavior = FillBehavior.Stop
+                };
+                animace.AutoReverse = false;
+                animace.RepeatBehavior = RepeatBehavior.Forever;
+                flare3.BeginAnimation(UIElement.OpacityProperty, animace);
+        }
+
         // Console
         void gameConsole_click(object sender, RoutedEventArgs e) {
             sendGameConsoleData();
@@ -505,6 +537,12 @@ namespace Escape {
             } else if (command == "unfreeze" && Globals.admin == true) {
                 commandExist = true;
                 dopamin_timer.Start();
+            } else if (command == "flashlight" && Globals.admin == true) {
+                commandExist = true;
+                flashlight = true;
+                if (room3.Visibility == Visibility.Visible) {
+                    room3_light.Visibility = Visibility.Visible;
+                }
             } else if (command == "back monalisa" && Globals.admin == true) {
                 var monaorig = new ImageBrush();
                 monaorig.ImageSource = new BitmapImage(new Uri(@"img/items/room1/picture_monalisa.png", UriKind.Relative));

@@ -13,7 +13,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-         <Rectangle Width="1536" Height="830" Fill="Black" />
+        <Rectangle Fill="Black" Margin="-21,-21,-23,-21" />
         <WrapPanel x:Name="gameConsole" Grid.Column="0" Grid.Row="0" Width="1536" Height="830">
             <TextBox x:Name="gameConsoleInfo" Width="1536" MaxHeight="780" TextAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" HorizontalAlignment="Left" IsReadOnly="True" VerticalAlignment="Top" Height="786" TextWrapping="Wrap" Background="Black" Foreground="Lime" BorderBrush="Black"/>
             <TextBox x:Name="gameConsoleInput" Width="1536" FontSize="12" Cursor="Hand" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Height="52" CaretBrush="Lime" Background="Black" Foreground="Lime" BorderBrush="Black"/>

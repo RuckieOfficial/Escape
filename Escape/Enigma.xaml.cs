@@ -27,18 +27,12 @@ namespace Escape {
         bool validate = true;
         public bool success = false;
 
-        private Frame frame;
-
         DispatcherTimer reset_timer = new DispatcherTimer();
         DispatcherTimer leds = new DispatcherTimer();
 
         public Enigma() {
             InitializeComponent();
             setintervals();
-        }
-
-        public void getFrame(Frame frame) {
-            this.frame = frame;
         }
 
         void setintervals() {

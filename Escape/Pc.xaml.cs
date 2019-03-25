@@ -19,8 +19,9 @@ namespace Escape {
     /// </summary>
     public partial class Pc : UserControl {
 
+        public bool sucess = false;
 
-        List<string> consoleCommands = new List<string> { "help", "clear", "color", "dir" };
+        List<string> consoleCommands = new List<string> { "help", "clear", "color", "dir", "exit" };
         Stack<string> lastConsoleComands = new Stack<string>();
 
         public Pc() {
@@ -36,7 +37,7 @@ namespace Escape {
         }
 
         void Page_loaded(object sender, RoutedEventArgs e) {
-            Application.Current.MainWindow.KeyDown += new KeyEventHandler(Controls);
+            this.KeyDown += new KeyEventHandler(Controls);
             gameConsoleInput.PreviewKeyDown -= new KeyEventHandler(Sipky);
             this.IsVisibleChanged += new DependencyPropertyChangedEventHandler(focus_input);
         }
@@ -108,9 +109,9 @@ namespace Escape {
                 gameConsoleInput.CaretBrush = new SolidColorBrush(barva_cnvrt);
             } else if (command == "clear") {
                 commandExist = true;
-            }
-
-            if (command == "help") {
+            } else if (command == "exit") {
+                this.Visibility = Visibility.Hidden;
+            } else if (command == "help") {
                 gameConsoleInfo.Text = gameConsoleInfo.Text + "################## Commands ##################\n\n";
                 foreach (string consoleCommand in consoleCommands) {
                     gameConsoleInfo.Text = gameConsoleInfo.Text + "/" + consoleCommand + "\n";
@@ -118,6 +119,8 @@ namespace Escape {
                 }
                 gameConsoleInfo.Text = gameConsoleInfo.Text + "\n#############################################\n";
                 commandExist = true;
+            } else if (command == "next") {
+                sucess = true;
             }
             if (commandExist) {
                 lastConsoleComands.Push(command);

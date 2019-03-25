@@ -210,6 +210,9 @@
     <Resource Include="img\items\room1\enigma\enigma_opened.jpg" />
     <Resource Include="img\items\room1\enigma\dopamin_enigma.png" />
     <Resource Include="img\items\room1\enigma\key_in_enigma.png" />
+    <Resource Include="img\items\flares\flareFL.png" />
+    <Resource Include="img\items\character\character_state_2.png" />
+    <Resource Include="img\items\character\character_state_2_1.png" />
     <Content Include="sound\pc_noise.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
