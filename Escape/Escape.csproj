@@ -213,6 +213,7 @@
     <Resource Include="img\items\flares\flareFL.png" />
     <Resource Include="img\items\character\character_state_2.png" />
     <Resource Include="img\items\character\character_state_2_1.png" />
+    <Resource Include="img\items\room3\flashlight.png" />
     <Content Include="sound\pc_noise.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

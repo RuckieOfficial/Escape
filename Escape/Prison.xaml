@@ -92,6 +92,11 @@
                     </TransformGroup>
                 </Button.RenderTransform>
             </Button>
+            <Button Name="flash" Click="pickup_flash" Visibility="Hidden" Opacity="0.6" BorderBrush="{x:Null}" Margin="10,392,697,0" Height="Auto">
+                <Button.Background>
+                    <ImageBrush ImageSource="img/items/room3/flashlight.png"/>
+                </Button.Background>
+            </Button>
             <Rectangle Name="dark2" Visibility="Visible" Fill="Black" Opacity="0.5" IsHitTestVisible="False" Width="Auto" Height="Auto" Grid.Row="0" Grid.Column="0"/>
         </Grid>
         <local:Pc x:Name="pc_code" Panel.ZIndex="1" Visibility="Hidden" Grid.ColumnSpan="2" Grid.RowSpan="2"/>

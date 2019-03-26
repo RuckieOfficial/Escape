@@ -19,6 +19,9 @@ namespace Escape {
     /// </summary>
     public partial class Pc : UserControl {
 
+        double pathPhase = 3;
+        string pathstring;
+
         public bool sucess = false;
 
         List<string> consoleCommands = new List<string> { "help", "clear", "color", "dir", "exit" };
@@ -27,6 +30,7 @@ namespace Escape {
         public Pc() {
             InitializeComponent();
             textinPC();
+            PathF();
         }
 
         void textinPC() {
@@ -34,6 +38,20 @@ namespace Escape {
                 "\n#           Welcome to Prison cumputer                                   #\n" +
                 "#           ver.1.2.0                                                                     #\n" +
                 "#############################################\nType /help for all commands\n\n";
+        }
+
+        void PathF() {
+            switch(pathPhase) {
+                case 1:
+                    pathstring = "C:/>";
+                    break;
+                case 2:
+                    pathstring = "C:/Prisoner>";
+                    break;
+                case 3:
+                    pathstring = "C:/Prisoner/Desktop>";
+                    break;
+            }
         }
 
         void Page_loaded(object sender, RoutedEventArgs e) {
@@ -88,7 +106,7 @@ namespace Escape {
                         }
                     }
                 } else {
-                    consoleInput = "C:/Prisoner/Desktop>"  + consoleInput + "\n";
+                    consoleInput = pathstring  + consoleInput + "\n";
                 }
 
                 gameConsoleInfo.Text = gameConsoleInfo.Text + consoleInput;
@@ -103,10 +121,14 @@ namespace Escape {
             } else if (command.Contains("color")) {
                 commandExist = true;
                 string[] barva = command.Split(' ');
-                var barva_cnvrt = (Color)ColorConverter.ConvertFromString(barva[1]);
-                gameConsoleInfo.Foreground = new SolidColorBrush(barva_cnvrt);
-                gameConsoleInput.Foreground = new SolidColorBrush(barva_cnvrt);
-                gameConsoleInput.CaretBrush = new SolidColorBrush(barva_cnvrt);
+                try {
+                    var barva_cnvrt = (Color)ColorConverter.ConvertFromString(barva[1]);
+                    gameConsoleInfo.Foreground = new SolidColorBrush(barva_cnvrt);
+                    gameConsoleInput.Foreground = new SolidColorBrush(barva_cnvrt);
+                    gameConsoleInput.CaretBrush = new SolidColorBrush(barva_cnvrt);
+                } catch {
+                    commandExist = false;
+                }
             } else if (command == "clear") {
                 commandExist = true;
             } else if (command == "exit") {
@@ -121,6 +143,14 @@ namespace Escape {
                 commandExist = true;
             } else if (command == "next") {
                 sucess = true;
+                this.Visibility = Visibility.Hidden;
+                commandExist = true;
+            } else if (command == "cd ..") {
+                if (pathPhase != 1) {
+                    pathPhase--;
+                    PathF();
+                    commandExist = true;
+                }
             }
             if (commandExist) {
                 lastConsoleComands.Push(command);

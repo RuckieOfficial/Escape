@@ -115,6 +115,21 @@ namespace Escape {
                 room3_nolight.Visibility = Visibility.Visible;
             }
         }
+
+        public void treti2() {
+            pc_code.IsVisibleChanged -= _IsVisiblePcChanged;
+            bg.Source = new BitmapImage(prison_bg["PrisonBG3"]);
+            room1.Visibility = Visibility.Hidden;
+            room2.Visibility = Visibility.Hidden;
+            room3.Visibility = Visibility.Visible;
+            if (flashlight == true) {
+                room3_light.Visibility = Visibility.Visible;
+                room3_nolight.Visibility = Visibility.Hidden;
+            } else {
+                room3_nolight.Visibility = Visibility.Visible;
+            }
+        }
+
         public void ctvrty(object sender, RoutedEventArgs e) {
             bg.Source = new BitmapImage(prison_bg["PrisonBG4"]);
         }
@@ -163,9 +178,10 @@ namespace Escape {
 
         void initializeRoom3() {
             flarethree();
+            pc_code.IsVisibleChanged += _IsVisiblePcChanged;
         }
 
-        void informace() {
+    void informace() {
             hp.Content = Globals.actual_hp + "%";
             if (Globals.actual_dopamine > 100) {
                 Globals.actual_dopamine = 100;
@@ -416,6 +432,7 @@ namespace Escape {
                 light2_state = 1;
                 pcnoise.Stop();
                 monitor.IsEnabled = true;
+                flash.Visibility = Visibility.Visible;
                 flare2_off.Visibility = Visibility.Hidden;
                 flare2.Visibility = Visibility.Visible;
                 table_off.Visibility = Visibility.Hidden;
@@ -480,6 +497,20 @@ namespace Escape {
                 animace.AutoReverse = false;
                 animace.RepeatBehavior = RepeatBehavior.Forever;
                 flare3.BeginAnimation(UIElement.OpacityProperty, animace);
+        }
+
+        void pickup_flash(object sender, RoutedEventArgs e) {
+            flashlight = true;
+            flash.Visibility = Visibility.Hidden;
+        }
+
+        void _IsVisiblePcChanged(object sender, DependencyPropertyChangedEventArgs e) {
+            if (!((bool)e.NewValue)) {
+                if (pc_code.sucess) {
+                    pc_code.Visibility = Visibility.Hidden;
+                    treti2();
+                }
+            }
         }
 
         // Console
