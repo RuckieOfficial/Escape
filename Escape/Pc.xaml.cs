@@ -95,7 +95,7 @@ namespace Escape {
                 if (commandArray[0] == 47) {
                     if (gameConsoleCommands(new string(commandArray.Skip(1).ToArray()))) {
                         if (consoleInput != "/clear") {
-                            consoleInput = "Command '" + new string(commandArray.Skip(1).ToArray()) + "' was activated\n";
+                            consoleInput = pathstring + new string(commandArray.Skip(1).ToArray()) + "\n";
                         } else {
                             gameConsoleInfo.Clear();
                             consoleInput = "";
@@ -141,7 +141,7 @@ namespace Escape {
                 }
                 gameConsoleInfo.Text = gameConsoleInfo.Text + "\n#############################################\n";
                 commandExist = true;
-            } else if (command == "next") {
+            } else if (command == "H31P") {
                 sucess = true;
                 this.Visibility = Visibility.Hidden;
                 commandExist = true;
@@ -151,7 +151,39 @@ namespace Escape {
                     PathF();
                     commandExist = true;
                 }
-            }
+            } else if (command == "cd ../..") {
+                if (pathPhase != 2) {
+                    pathPhase -= 2;
+                    PathF();
+                    commandExist = true;
+                }
+            } else if (command == "cd Prisoner") {
+                if (pathPhase == 1) {
+                    pathPhase++;
+                    PathF();
+                    commandExist = true;
+                }
+            } else if (command == "cd Desktop") {
+                if (pathPhase == 2) {
+                    pathPhase++;
+                    PathF();
+                    commandExist = true;
+                }
+            } else if (command == "cd file.txt") {
+                if (pathPhase == 2) {
+                    gameConsoleInfo.Text = gameConsoleInfo.Text + "\n/H31P ###Hiden command, dont's say to anyone!" + "\n\n";
+                    commandExist = true;
+                }
+            } else if(command == "dir") {
+                if (pathPhase == 1) {
+                    gameConsoleInfo.Text = gameConsoleInfo.Text + "LPrisoner\n   LDesktop\n   Lfiletxt" + "\n";
+                } else if (pathPhase == 2) {
+                    gameConsoleInfo.Text = gameConsoleInfo.Text + "LDesktop\nLfile.txt" + "\n";
+                } else if (pathPhase == 1) {
+                    gameConsoleInfo.Text = gameConsoleInfo.Text + " " + "\n";
+                }
+                commandExist = true; 
+            } 
             if (commandExist) {
                 lastConsoleComands.Push(command);
                 Globals.lastCommandIndex = 0;

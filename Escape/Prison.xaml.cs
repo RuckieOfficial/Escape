@@ -32,6 +32,7 @@ namespace Escape {
 
         private Frame parentFrame;
         DispatcherTimer dopamin_timer = new DispatcherTimer();
+        DispatcherTimer pc_timer = new DispatcherTimer();
 
         static string ingame = @"sound/ingame.wav";
         SoundPlayer music = new SoundPlayer(ingame);
@@ -372,19 +373,19 @@ namespace Escape {
 
         void enigma_dopamin_l(object sender, RoutedEventArgs e) {
             item_enigma_opened.dopaminL.Visibility = Visibility.Hidden;
-            Globals.actual_dopamine += 10;
+            Globals.actual_dopamine += 5;
             informace();
             drugBar.Value = Globals.actual_dopamine;
         }
         void enigma_dopamin_m(object sender, RoutedEventArgs e) {
             item_enigma_opened.dopaminM.Visibility = Visibility.Hidden;
-            Globals.actual_dopamine += 10;
+            Globals.actual_dopamine += 5;
             informace();
             drugBar.Value = Globals.actual_dopamine;
         }
         void enigma_dopamin_r(object sender, RoutedEventArgs e) {
             item_enigma_opened.dopaminR.Visibility = Visibility.Hidden;
-            Globals.actual_dopamine += 10;
+            Globals.actual_dopamine += 5;
             informace();
             drugBar.Value = Globals.actual_dopamine;
         }
@@ -399,8 +400,9 @@ namespace Escape {
                     item_enigma_opened.Visibility = Visibility.Visible;
                     enigma_opened = true;
                 } else {
-                    Globals.actual_dopamine -= 10;
-                    drugBar.Value = Globals.actual_dopamine;
+                    Globals.actual_hp -= 15;
+                    hpBar.Value = Globals.actual_hp;
+                    informace();
                 }
             }
             item_enigma.IsVisibleChanged -= _IsVisibleChanged;
@@ -408,7 +410,7 @@ namespace Escape {
 
         void takerdopamin(object sender, RoutedEventArgs e) {
             rdopamin.Visibility = Visibility.Hidden;
-            Globals.actual_dopamine += 10;
+            Globals.actual_dopamine += 5;
             informace();
             drugBar.Value = Globals.actual_dopamine;
             pic_r_dop = false;
@@ -417,7 +419,7 @@ namespace Escape {
         void takeldopamin(object sender, RoutedEventArgs e) {
             var mona = new ImageBrush();
             ldopamin.Visibility = Visibility.Hidden;
-            Globals.actual_dopamine += 10;
+            Globals.actual_dopamine += 5;
             informace();
             drugBar.Value = Globals.actual_dopamine;
             pic_l_dop = false;
@@ -456,6 +458,21 @@ namespace Escape {
 
         void use_pc(object sender, RoutedEventArgs e) {
             pc_code.Visibility = Visibility.Visible;
+            pc_counter();
+        }
+
+        void pc_counter() {
+            pc_timer.Interval = new TimeSpan(0, 0, 0, 0, 15000);
+            pc_timer.Tick += new EventHandler(pc_Tick);
+            pc_timer.Start();
+        }
+
+        void pc_Tick(object sender, EventArgs e) {
+            pc_code.Visibility = Visibility.Hidden;
+            Globals.actual_hp -= 15;
+            hpBar.Value = Globals.actual_hp;
+            informace();
+            pc_timer.Tick -= new EventHandler(pc_Tick);
         }
 
         void flaretwo() {
@@ -508,9 +525,19 @@ namespace Escape {
             if (!((bool)e.NewValue)) {
                 if (pc_code.sucess) {
                     pc_code.Visibility = Visibility.Hidden;
+                    room2_next.Visibility = Visibility.Visible;
+                    pc_timer.Tick -= new EventHandler(pc_Tick);
                     treti2();
                 }
             }
+        }
+
+        void room3_back(object sender, RoutedEventArgs e) {
+            druhy((Button)sender, e);
+        }
+
+        void room2_next_btn(object sender, RoutedEventArgs e) {
+            treti2();
         }
 
         // Console
