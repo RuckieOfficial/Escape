@@ -97,8 +97,8 @@
                     <ImageBrush ImageSource="img/items/room3/flashlight.png"/>
                 </Button.Background>
             </Button>
-            <Rectangle Name="dark2" Visibility="Visible" Fill="Black" Opacity="0.3" IsHitTestVisible="False" Width="Auto" Height="Auto" Grid.Row="0" Grid.Column="0"/>
-            <Button Name="room2_next" Click="room2_next_btn" Visibility="Hidden" Foreground="{x:Null}" Margin="712,216,18,167" BorderBrush="{x:Null}">
+            <Rectangle Name="dark2" Visibility="Visible" Fill="Black" Opacity="0.1" IsHitTestVisible="False" Width="Auto" Height="Auto" Grid.Row="0" Grid.Column="0"/>
+            <Button Name="room2_next" Click="room2_next_btn" Opacity="0.5" Visibility="Hidden" Foreground="{x:Null}" Margin="712,216,18,167" BorderBrush="{x:Null}">
                 <Button.Background>
                     <ImageBrush ImageSource="img/items/room3/right_arr.png"/>
                 </Button.Background>
@@ -113,9 +113,9 @@
             </Grid>
             <Grid Name="room3_nolight" Visibility="Hidden">
                 <Image Source="img\items\character\character_state_2.png" Opacity="0.6" Margin="-80,142,620,-5" RenderTransformOrigin="0.5,0.5"/>
-                <Rectangle Name="dark3" Visibility="Visible" Fill="Black" Opacity="0.3" IsHitTestVisible="True" Width="Auto" Height="Auto" Grid.Column="0" Margin="0,10,10,0"/>
+                <Rectangle Name="dark3" Visibility="Visible" Fill="Black" Opacity="0.1" IsHitTestVisible="True" Width="Auto" Height="Auto" Grid.Column="0" Margin="0,10,10,0"/>
             </Grid>
-            <Button Height="Auto" Click="room3_back" Opacity="0.25" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="37,16,689,361">
+            <Button Height="Auto" Click="room3_back" Opacity="0.2" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="37,16,689,361">
                 <Button.Background>
                     <ImageBrush ImageSource="img/items/room3/left_arr.png"/>
                 </Button.Background>
@@ -123,8 +123,9 @@
         </Grid>
         <!--Room4-->
         <Grid Name="room4" Visibility="Visible" Grid.Column="1" Grid.Row="1">
+            
             <Button Content="Menu" FontSize="50" Click="go_menu" Margin="283,258,10,91" RenderTransformOrigin="0.5,0.5" Height="Auto"/>
-            <Button Content="Intro" FontSize="50" Click="go_intro" Margin="283,329,10,22" RenderTransformOrigin="0.5,0.5" Height="Auto"/>
+            <Button Content="Win" FontSize="50" Click="go_win" Margin="283,329,10,22" RenderTransformOrigin="0.5,0.5" Height="Auto"/>
         </Grid>
         <!--Bary-->
         <Image Source="img/bars.png" Margin="541.2,10,23.6,288.2" Grid.Column="1"/>

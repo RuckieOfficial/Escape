@@ -38,10 +38,6 @@ namespace Escape
             parentFrame.Navigate(new Prison(parentFrame));
             Application.Current.MainWindow.KeyDown -= new KeyEventHandler(Controls);
         }
-        private void go_intro(object sender, RoutedEventArgs e) {
-            parentFrame.Navigate(new Intro(parentFrame));
-            Application.Current.MainWindow.KeyDown -= new KeyEventHandler(Controls);
-        }
         private void Controls(object sender, KeyEventArgs e) {
             if (e.Key == Key.Escape) {
                 if (paused == false) {

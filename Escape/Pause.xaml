@@ -8,8 +8,7 @@
              Width="1536" Height="830">
     <Grid>
         <Rectangle Margin="0,0,0,-0.4" Fill="#E5000000" />
-        <Button Content="Prvni" FontSize="80" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="655,243,654.6,472.4" Height="115" Background="#00000000" BorderBrush="#00000000"/>
-        <Button Content="Druhy" FontSize="80" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="638,358,638.6,357.4" Height="115" Background="#00000000" BorderBrush="#00000000"/>
+        <Button Content="Continue" Name="Continue" FontSize="80" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="538,358,538.6,357.4" Height="115" Background="#00000000" BorderBrush="#00000000"/>
         <Button Content="Exit" Click="Exit" FontSize="80" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="683,473,683.6,242.4" Height="115" Background="#00000000" BorderBrush="#00000000"/>
 
         <Button Width="60" Height="50" Click="Fullscreen" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" Foreground="{x:Null}">

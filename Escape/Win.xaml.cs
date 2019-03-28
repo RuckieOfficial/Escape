@@ -18,15 +18,15 @@ namespace Escape
     /// <summary>
     /// Interakční logika pro Intro.xaml
     /// </summary>
-    public partial class Intro : Page
+    public partial class Win : Page
     {
         private Frame parentFrame;
         bool paused = false;
-        public Intro()
+        public Win()
         {
             InitializeComponent();
         }
-        public Intro(Frame parentFrame) : this(){
+        public Win(Frame parentFrame) : this(){
             this.parentFrame = parentFrame;
         }
 

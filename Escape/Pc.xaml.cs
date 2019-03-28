@@ -24,7 +24,7 @@ namespace Escape {
 
         public bool sucess = false;
 
-        List<string> consoleCommands = new List<string> { "help", "clear", "color", "dir", "exit" };
+        List<string> consoleCommands = new List<string> { "help", "clear", "color", "cd", "dir", "exit" };
         Stack<string> lastConsoleComands = new Stack<string>();
 
         public Pc() {
@@ -145,6 +145,12 @@ namespace Escape {
                 sucess = true;
                 this.Visibility = Visibility.Hidden;
                 commandExist = true;
+            } else if (command == "cd") {
+                gameConsoleInfo.Text += "Type /cd ? #for help\n";
+                commandExist = true;
+            } else if (command == "cd ?") {
+                gameConsoleInfo.Text += "Define your destination:\n /cd .. #For directory up\n /cd ../.. #For two directory up\n /cd NAME #For custom directory\n\n";
+                commandExist = true;
             } else if (command == "cd ..") {
                 if (pathPhase != 1) {
                     pathPhase--;
@@ -174,6 +180,9 @@ namespace Escape {
                     gameConsoleInfo.Text = gameConsoleInfo.Text + "\n/H31P ###Hiden command, dont's say to anyone!" + "\n\n";
                     commandExist = true;
                 }
+            } else if (command == "dir ?") {
+                gameConsoleInfo.Text += "#Show all files in directory\n\n";
+                commandExist = true;
             } else if(command == "dir") {
                 if (pathPhase == 1) {
                     gameConsoleInfo.Text = gameConsoleInfo.Text + "LPrisoner\n   LDesktop\n   Lfiletxt" + "\n";

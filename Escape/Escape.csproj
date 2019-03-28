@@ -74,7 +74,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Intro.xaml">
+    <Page Include="Lose.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Win.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -93,8 +97,11 @@
       <DependentUpon>Enigma_opened.xaml</DependentUpon>
     </Compile>
     <Compile Include="Globals.cs" />
-    <Compile Include="Intro.xaml.cs">
-      <DependentUpon>Intro.xaml</DependentUpon>
+    <Compile Include="Lose.xaml.cs">
+      <DependentUpon>Lose.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Win.xaml.cs">
+      <DependentUpon>Win.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

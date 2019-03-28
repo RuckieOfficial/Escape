@@ -87,6 +87,10 @@ namespace Escape {
             gameConsoleInput.PreviewKeyDown += new KeyEventHandler(Sipky);
         }
 
+        private void go_win() {
+            parentFrame.Navigate(new Win(parentFrame));
+        }
+
         public void prvni() {
             bg.Source = new BitmapImage(prison_bg["PrisonBG1"]);
             room2.Visibility = Visibility.Hidden;
@@ -154,6 +158,7 @@ namespace Escape {
             item_enigma_opened.dopaminR.Click += new RoutedEventHandler(enigma_dopamin_r);
             item_enigma_opened.enigmaKEY.Click += new RoutedEventHandler(enigma_Key);
             Game_pause.soundoff.Click += new RoutedEventHandler(sound_option);
+            Game_pause.Continue.Click += new RoutedEventHandler(continue_option);
         }
 
         void initializeRoom2() {
@@ -181,8 +186,14 @@ namespace Escape {
             Application.Current.MainWindow.KeyDown -= new KeyEventHandler(Controls);
             gameConsoleInput.PreviewKeyDown -= new KeyEventHandler(Sipky);
         }
-        private void go_intro(object sender, RoutedEventArgs e) {
-            parentFrame.Navigate(new Intro(parentFrame));
+        private void go_win(object sender, RoutedEventArgs e) {
+            parentFrame.Navigate(new Win(parentFrame));
+            Application.Current.MainWindow.KeyDown -= new KeyEventHandler(Controls);
+            gameConsoleInput.PreviewKeyDown -= new KeyEventHandler(Sipky);
+        }
+
+        private void go_lose() {
+            parentFrame.Navigate(new Lose(parentFrame));
             Application.Current.MainWindow.KeyDown -= new KeyEventHandler(Controls);
             gameConsoleInput.PreviewKeyDown -= new KeyEventHandler(Sipky);
         }
@@ -198,9 +209,14 @@ namespace Escape {
             if (Globals.actual_dopamine > 0) {
                 Globals.actual_dopamine--;
             } else {
-                Globals.actual_hp--;
-                hpBar.Value--;
-                hp.Content = Globals.actual_hp + "%";
+                if (Globals.actual_hp > 0) {
+                    Globals.actual_hp--;
+                    hpBar.Value--;
+                    hp.Content = Globals.actual_hp + "%";
+                } else {
+                    dopamin_timer.Tick -= new EventHandler(dopamin_Tick);
+                    MessageBox.Show("U died, loser!");
+                }
             }
             drugBar.Value--;
             dopamin.Content = Globals.actual_dopamine + "%";
@@ -234,6 +250,11 @@ namespace Escape {
             } else {
                 music.Stop();
             }
+        }
+
+        void continue_option(object sender, RoutedEventArgs e) {
+            Game_pause.Visibility = Visibility.Hidden;
+            dopamin_timer.Start();
         }
 
         // -------------- Místnost 1 --------------
@@ -453,7 +474,7 @@ namespace Escape {
         }
 
         void pc_counter() {
-            pc_timer.Interval = new TimeSpan(0, 0, 0, 0, 15000);
+            pc_timer.Interval = new TimeSpan(0, 0, 0, 0, 50000);
             pc_timer.Tick += new EventHandler(pc_Tick);
             pc_timer.Start();
         }
@@ -622,6 +643,12 @@ namespace Escape {
                 commandExist = true;
             } else if (command == "room4") {
                 ctvrty();
+                commandExist = true;
+            } else if (command == "win") {
+                go_win();
+                commandExist = true;
+            } else if (command == "lose") {
+                go_lose();
                 commandExist = true;
             }
 
