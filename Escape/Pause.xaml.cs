@@ -40,5 +40,20 @@ namespace Escape
                 fullscreen = false;
             }
         }
+
+        void Sound(object sender, RoutedEventArgs e) {
+            if (Globals.sound_state == 1) {
+                var sound_image = new ImageBrush();
+                sound_image.ImageSource = new BitmapImage(new Uri(@"img/soff.png", UriKind.Relative));
+                soundoff.Background = sound_image;
+                Globals.sound_state = 0;
+
+            } else {
+                var sound_image = new ImageBrush();
+                sound_image.ImageSource = new BitmapImage(new Uri(@"img/son.png", UriKind.Relative));
+                soundoff.Background = sound_image;
+                Globals.sound_state = 1;
+            }
+        }
     }
 }

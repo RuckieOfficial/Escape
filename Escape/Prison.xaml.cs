@@ -87,13 +87,14 @@ namespace Escape {
             gameConsoleInput.PreviewKeyDown += new KeyEventHandler(Sipky);
         }
 
-        public void prvni(object sender, RoutedEventArgs e) {
+        public void prvni() {
             bg.Source = new BitmapImage(prison_bg["PrisonBG1"]);
             room2.Visibility = Visibility.Hidden;
             room3.Visibility = Visibility.Hidden;
+            room4.Visibility = Visibility.Hidden;
             room1.Visibility = Visibility.Visible;
         }
-        public void druhy(object sender, RoutedEventArgs e) {
+        public void druhy() {
             bg.Source = new BitmapImage(prison_bg["PrisonBG2"]);
             pcnoise.Open(new Uri(@"sound/pc_noise.mp3", UriKind.Relative));
             pcnoise.Play();
@@ -102,12 +103,14 @@ namespace Escape {
             dopamin_counter();
             room1.Visibility = Visibility.Hidden;
             room3.Visibility = Visibility.Hidden;
+            room4.Visibility = Visibility.Hidden;
             room2.Visibility = Visibility.Visible;
         }
-        public void treti(object sender, RoutedEventArgs e) {
+        public void treti() {
             bg.Source = new BitmapImage(prison_bg["PrisonBG3"]);
             room1.Visibility = Visibility.Hidden;
             room2.Visibility = Visibility.Hidden;
+            room4.Visibility = Visibility.Hidden;
             room3.Visibility = Visibility.Visible;
             if (flashlight == true) {
                 room3_light.Visibility = Visibility.Visible;
@@ -117,33 +120,12 @@ namespace Escape {
             }
         }
 
-        public void treti2() {
-            pc_code.IsVisibleChanged -= _IsVisiblePcChanged;
-            bg.Source = new BitmapImage(prison_bg["PrisonBG3"]);
-            room1.Visibility = Visibility.Hidden;
-            room2.Visibility = Visibility.Hidden;
-            room3.Visibility = Visibility.Visible;
-            if (flashlight == true) {
-                room3_light.Visibility = Visibility.Visible;
-                room3_nolight.Visibility = Visibility.Hidden;
-            } else {
-                room3_nolight.Visibility = Visibility.Visible;
-            }
-        }
-
-        public void ctvrty(object sender, RoutedEventArgs e) {
+        public void ctvrty() {
             bg.Source = new BitmapImage(prison_bg["PrisonBG4"]);
-        }
-
-        public void sound(object sender, RoutedEventArgs e) {
-            if (Globals.sound_state == 1) {
-                music.Stop();
-                Globals.sound_state = 0;
-
-            } else {
-                music.Play();
-                Globals.sound_state = 1;
-            }
+            room1.Visibility = Visibility.Hidden;
+            room2.Visibility = Visibility.Hidden;
+            room3.Visibility = Visibility.Hidden;
+            room4.Visibility = Visibility.Visible;
         }
 
         void initializeAll() {
@@ -171,6 +153,7 @@ namespace Escape {
             item_enigma_opened.dopaminM.Click += new RoutedEventHandler(enigma_dopamin_m);
             item_enigma_opened.dopaminR.Click += new RoutedEventHandler(enigma_dopamin_r);
             item_enigma_opened.enigmaKEY.Click += new RoutedEventHandler(enigma_Key);
+            Game_pause.soundoff.Click += new RoutedEventHandler(sound_option);
         }
 
         void initializeRoom2() {
@@ -242,6 +225,14 @@ namespace Escape {
                 } else {
                     gameConsole.Visibility = Visibility.Hidden;
                 }
+            }
+        }
+
+        void sound_option(object sender, RoutedEventArgs e) {
+            if (Globals.sound_state == 1) {
+                music.Play();
+            } else {
+                music.Stop();
             }
         }
 
@@ -391,7 +382,7 @@ namespace Escape {
         }
         void enigma_Key(object sender, RoutedEventArgs e) {
             item_enigma_opened.enigmaKEY.Visibility = Visibility.Hidden;
-            druhy((Button)sender, e);
+            druhy();
         }
 
         void _IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e) {
@@ -527,17 +518,17 @@ namespace Escape {
                     pc_code.Visibility = Visibility.Hidden;
                     room2_next.Visibility = Visibility.Visible;
                     pc_timer.Tick -= new EventHandler(pc_Tick);
-                    treti2();
+                    treti();
                 }
             }
         }
 
         void room3_back(object sender, RoutedEventArgs e) {
-            druhy((Button)sender, e);
+            druhy();
         }
 
         void room2_next_btn(object sender, RoutedEventArgs e) {
-            treti2();
+            treti();
         }
 
         // Console
@@ -619,6 +610,18 @@ namespace Escape {
                 gameConsoleInput.Foreground = new SolidColorBrush(barva_cnvrt);
                 gameConsoleButton.Foreground = new SolidColorBrush(barva_cnvrt);
             } else if (command == "clear") {
+                commandExist = true;
+            } else if (command == "room1") {
+                prvni();
+                commandExist = true;
+            } else if (command == "room2") {
+                druhy();
+                commandExist = true;
+            } else if (command == "room3") {
+                treti();
+                commandExist = true;
+            } else if (command == "room4") {
+                ctvrty();
                 commandExist = true;
             }
 

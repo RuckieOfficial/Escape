@@ -17,5 +17,10 @@
                 <ImageBrush ImageSource="img/fs.png"/>
             </Button.Background>
         </Button>
+        <Button Width="60" Height="50" Name="soundoff" Click="Sound" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="75,10,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="img/son.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </UserControl>

@@ -216,6 +216,12 @@
     <Resource Include="img\items\room3\flashlight.png" />
     <Resource Include="img\items\room3\left_arr.png" />
     <Resource Include="img\items\room3\right_arr.png" />
+    <Content Include="img\soff.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\son.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="sound\pc_noise.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
