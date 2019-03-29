@@ -208,6 +208,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="sound\lose.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\win.mp3" />
     <Resource Include="img\items\room1\toilet.png" />
     <Resource Include="img\items\room1\hand.png" />
     <Resource Include="img\items\flares\flarePC.png" />
@@ -223,10 +227,15 @@
     <Resource Include="img\items\room3\flashlight.png" />
     <Resource Include="img\items\room3\left_arr.png" />
     <Resource Include="img\items\room3\right_arr.png" />
+    <Resource Include="img\bg\bg_lose.jpg" />
+    <Resource Include="img\bg\bg_menu.jpg" />
     <Content Include="img\soff.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="img\son.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\intro.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="sound\pc_noise.mp3">

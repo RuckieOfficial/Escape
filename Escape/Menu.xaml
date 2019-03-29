@@ -10,17 +10,15 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <!--Obsah-->
-        <Label Grid.Column="1" Grid.Row="1" Background="Purple"/>
-        <Label Grid.Column="0" Grid.Row="0" Background="Lime"/>
-        <Button Content="Prison" FontSize="50" Click="go_prison" Grid.ColumnSpan="2" Margin="290,312,337.6,391.4" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Height="Auto"/>
-        <!--Pauza hry-->
-        <local:Pause x:Name="Game_pause" Visibility="Hidden" Panel.ZIndex="10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Image Source="img/bg/bg_menu.jpg"/>
+        <Button Content="Play" FontSize="50" Click="go_prison"  VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="113" Foreground="White" BorderBrush="{x:Null}" Background="#3FFFFFFF" Width="400" Margin="568,300,568,417"/>
+        <Button Content="Exit" FontSize="50" Click="exit" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="114" Foreground="White" BorderBrush="{x:Null}" Background="#3FFFFFFF" Margin="568,442,568,274" Width="400"/>
+
+        <local:Pause x:Name="Game_pause" Visibility="Hidden" Panel.ZIndex="10" Grid.ColumnSpan="1" Grid.RowSpan="1"/>
     </Grid>
 </Page>

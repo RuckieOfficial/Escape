@@ -17,16 +17,7 @@ namespace Escape {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-            initializeInfo();
-            myFrame.Navigate(new Prison(myFrame));
-        }
-        void initializeInfo() {
-            Globals.lastCommandIndex = 0;
-            Globals.actual_hp = 100;
-            Globals.actual_dopamine = 100;
-            Globals.dopamin_speed = 3000;
-            Globals.sound_state = 1;
-            Globals.admin = false;
+            myFrame.Navigate(new Menu(myFrame));
         }
     }
 }
