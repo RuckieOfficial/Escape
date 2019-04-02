@@ -171,12 +171,19 @@ namespace Escape {
         }
 
     void informace() {
-            hp.Content = Globals.actual_hp + "%";
+            if (Globals.actual_hp > 0) {
+                hp.Content = Globals.actual_hp + "%";
+                hpBar.Value = Globals.actual_hp;
+            } else {
+                go_lose();
+            }
             if (Globals.actual_dopamine > 100) {
                 Globals.actual_dopamine = 100;
                 dopamin.Content = Globals.actual_dopamine + "%";
+                drugBar.Value = Globals.actual_dopamine;
             } else {
                 dopamin.Content = Globals.actual_dopamine + "%";
+                drugBar.Value = Globals.actual_dopamine;
             }
         }
 
@@ -187,15 +194,15 @@ namespace Escape {
             gameConsoleInput.PreviewKeyDown -= new KeyEventHandler(Sipky);
         }
         private void go_win(object sender, RoutedEventArgs e) {
-            parentFrame.Navigate(new Win(parentFrame));
             Application.Current.MainWindow.KeyDown -= new KeyEventHandler(Controls);
             gameConsoleInput.PreviewKeyDown -= new KeyEventHandler(Sipky);
+            parentFrame.Navigate(new Win(parentFrame));
         }
 
         private void go_lose() {
-            parentFrame.Navigate(new Lose(parentFrame));
             Application.Current.MainWindow.KeyDown -= new KeyEventHandler(Controls);
             gameConsoleInput.PreviewKeyDown -= new KeyEventHandler(Sipky);
+            parentFrame.Navigate(new Lose(parentFrame));
         }
 
         // DOPAMIN
@@ -215,7 +222,7 @@ namespace Escape {
                     hp.Content = Globals.actual_hp + "%";
                 } else {
                     dopamin_timer.Tick -= new EventHandler(dopamin_Tick);
-                    MessageBox.Show("U died, loser!");
+                    go_lose();
                 }
             }
             drugBar.Value--;
@@ -643,6 +650,11 @@ namespace Escape {
                 commandExist = true;
             } else if (command == "room4") {
                 ctvrty();
+                commandExist = true;
+            } else if (command == "die") {
+                Globals.actual_hp = 1;
+                Globals.actual_dopamine = 0;
+                informace();
                 commandExist = true;
             } else if (command == "win") {
                 go_win();

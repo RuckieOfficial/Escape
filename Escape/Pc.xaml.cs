@@ -185,7 +185,7 @@ namespace Escape {
                 commandExist = true;
             } else if(command == "dir") {
                 if (pathPhase == 1) {
-                    gameConsoleInfo.Text = gameConsoleInfo.Text + "LPrisoner\n   LDesktop\n   Lfiletxt" + "\n";
+                    gameConsoleInfo.Text = gameConsoleInfo.Text + "LPrisoner\n   LDesktop\n   Lfile.txt" + "\n";
                 } else if (pathPhase == 2) {
                     gameConsoleInfo.Text = gameConsoleInfo.Text + "LDesktop\nLfile.txt" + "\n";
                 } else if (pathPhase == 1) {

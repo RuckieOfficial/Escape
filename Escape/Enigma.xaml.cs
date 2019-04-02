@@ -208,7 +208,7 @@ namespace Escape {
             led_pos++;
         }
 
-            void reset(object sender, EventArgs e) {
+        void reset(object sender, EventArgs e) {
             letter_q.Template = FindResource("circle") as ControlTemplate;
             letter_q.Foreground = Brushes.White;
             letter_w.Template = FindResource("circle") as ControlTemplate;

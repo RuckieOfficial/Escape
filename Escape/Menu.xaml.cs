@@ -38,6 +38,7 @@ namespace Escape
 
         void initializeInfo() {
             Game_pause.soundoff.Click += new RoutedEventHandler(sound_option);
+            Game_pause.Continue.Click += new RoutedEventHandler(continue_option);
             music.Play();
             Globals.lastCommandIndex = 0;
             Globals.actual_hp = 100;
@@ -53,6 +54,10 @@ namespace Escape
             } else {
                 music.Stop();
             }
+        }
+
+        void continue_option(object sender, RoutedEventArgs e) {
+            Game_pause.Visibility = Visibility.Hidden;
         }
 
         void Page_loaded(object sender, RoutedEventArgs e) {

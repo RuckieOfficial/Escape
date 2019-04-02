@@ -5,22 +5,20 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Escape"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Lose">
+      Title="Lose" Width="1536" Height="830" Loaded="Page_loaded">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <!--Obsah-->
-        <Label Grid.Column="1" Grid.Row="1" Background="Red"/>
-        <Label Grid.Column="0" Grid.Row="0" Background="Green"/>
+        <Image Source="img/bg/bg_lose.jpg" Stretch="Fill"/>
+        <Button Content="Play again" Click="go_prison" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" Height="auto" Width="280" Foreground="White" BorderBrush="{x:Null}" Background="#3FFFFFFF" Margin="649,756,607,0.4"/>
+        <Button Content="Exit" Click="exit" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" Height="auto" Width="280" Foreground="White" BorderBrush="{x:Null}" Background="#3FFFFFFF" Margin="649,0,607,756.4"/>
         <!--Pauza hry-->
-        <local:Pause x:Name="Game_pause" Visibility="Hidden" Panel.ZIndex="10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <local:Pause x:Name="Game_pause" Visibility="Hidden" Panel.ZIndex="10" Grid.ColumnSpan="1" Grid.RowSpan="1"/>
     </Grid>
 </Page>
